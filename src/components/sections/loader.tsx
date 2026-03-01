@@ -45,9 +45,6 @@ export default function Loader() {
         }`}
       id="loader"
     >
-      {/* Background layer for Step 1 */}
-      {step === 1 && <div className="absolute inset-0 aurora-bg opacity-30 pointer-events-none" />}
-
       {/* Step 0: Animated Greeting */}
       <div
         className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${step === 0 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10 pointer-events-none"
@@ -55,7 +52,7 @@ export default function Loader() {
       >
         <div className="flex flex-col items-center text-white text-[8.5vw] md:text-[6vw] font-normal leading-[0.9] tracking-[-0.02em]">
           <span className="flex items-baseline">
-            Rap<i className="font-serif italic mr-1">i</i>nno
+            Rapinno
           </span>
           <span className="flex items-baseline">
             Tech
@@ -82,7 +79,7 @@ export default function Loader() {
         {/* Centered Branding (Logo replaced with clean typography) */}
         <div className="relative z-10 flex flex-col items-center">
           <div className="text-white text-3xl md:text-4xl font-normal tracking-tight flex items-baseline">
-            Rap<i className="font-serif italic ml-1">i</i>nnoTech
+            RapinnoTech
           </div>
           <span className="block mt-4 text-center text-[10px] uppercase tracking-[0.3em] font-medium text-white/60">
             Rapid Technology Innovations
@@ -90,12 +87,7 @@ export default function Loader() {
         </div>
       </div>
 
-      <style jsx global>{`
-        #loader .font-serif {
-          font-family: serif;
-          font-style: italic;
-        }
-      `}</style>
+
     </div>
   );
 }

@@ -68,7 +68,7 @@ const Strengths = () => {
               {/* Vertical Rotated Title */}
               <div className="absolute top-1/2 left-10 -translate-y-1/2 -rotate-90 origin-left">
                 <span className="text-[12px] font-medium uppercase tracking-[0.2em] text-white/40 block">
-                  <i className="font-serif italic lowercase mr-1 text-white">i</i>{strength.title}
+                  {strength.title}
                 </span>
               </div>
 
@@ -91,15 +91,7 @@ const Strengths = () => {
                 {/* Content */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
                   <h2 className="text-[10vw] lg:text-[6vw] font-normal leading-[0.9] tracking-tighter mb-8 lowercase">
-                    {strength.title === 'automate' ? (
-                      <>
-                        <i className="font-serif italic text-white">a</i>utomate
-                      </>
-                    ) : strength.title === 'innovate' ? (
-                      <>
-                        <i className="font-serif italic text-white">i</i>nnovate
-                      </>
-                    ) : strength.title}
+                    {strength.title}
                   </h2>
                   <p className="text-[16px] lg:text-[18px] text-muted-foreground leading-relaxed max-w-md font-light">
                     {strength.description}

@@ -263,7 +263,7 @@ function SolutionContent({ category }: { category: (typeof solutionsData)[0] }) 
 
 export default function SolutionsPage() {
     return (
-        <main className="relative min-h-screen bg-black text-white selection:bg-white/20 overflow-x-hidden">
+        <main className="relative min-h-screen bg-transparent text-white selection:bg-white/20 overflow-x-hidden">
             <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-32 pb-8">
                 <div className="max-w-4xl mb-20">
                     <motion.h1
@@ -272,7 +272,7 @@ export default function SolutionsPage() {
                         transition={{ duration: 0.8 }}
                         className="text-[12vw] lg:text-[8vw] font-normal leading-[0.9] tracking-tighter mb-12"
                     >
-                        S<i className="font-serif italic mr-1">o</i>lut<i className="font-serif italic mr-1">i</i>ons
+                        Solutions
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -304,7 +304,7 @@ export default function SolutionsPage() {
                     href="/services"
                     className="text-4xl md:text-6xl font-light text-white hover:opacity-70 transition-opacity"
                 >
-                    Explore Ser<i className="font-serif italic">v</i>ices
+                    Explore Services
                 </Link>
             </div>
 
@@ -315,10 +315,7 @@ export default function SolutionsPage() {
                     border: 1px solid rgba(255, 255, 255, 0.08);
                     border-radius: 4px;
                 }
-                i {
-                    font-style: italic;
-                    font-family: serif;
-                }
+
             `}</style>
         </main>
     );

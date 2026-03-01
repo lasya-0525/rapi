@@ -4,6 +4,24 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme inline {
+  --animate-aurora: aurora 60s linear infinite;
+
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
+}
+
 @theme {
   --color-background: #000000;
   --color-foreground: #ffffff;
@@ -153,11 +171,7 @@
     letter-spacing: -0.02em;
   }
 
-  i {
-    font-style: italic;
-    font-family: serif;
-    /* Stylized 'i' motif from design */
-  }
+
 
   .container {
     width: 100%;
@@ -228,52 +242,6 @@
     mask-position: 0 0;
   }
 
-  /* Aurora Background Utility */
-  .aurora-bg {
-    position: relative;
-    background-color: #000;
-  }
-
-  .aurora-bg-solid {
-    position: relative;
-    background-color: #000000;
-  }
-
-  .aurora-bg::after,
-  .aurora-bg-solid::after {
-    content: "";
-    position: fixed;
-    inset: -100%;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.8;
-    background-image:
-      repeating-linear-gradient(100deg,
-        rgba(0, 255, 150, 0.3) 10%,
-        /* Vibrant Emerald */
-        rgba(0, 0, 0, 0) 15%,
-        /* Transparent Gap */
-        rgba(255, 0, 150, 0.2) 20%,
-        /* Neon Pink */
-        rgba(0, 0, 0, 0) 25%,
-        /* Transparent Gap */
-        rgba(120, 0, 255, 0.2) 30%),
-      /* Deep Violet */
-      repeating-linear-gradient(100deg,
-        rgba(120, 0, 255, 0.3) 10%,
-        /* Deep Violet */
-        rgba(0, 0, 0, 0) 15%,
-        /* Transparent Gap */
-        rgba(0, 255, 150, 0.2) 20%,
-        /* Vibrant Emerald */
-        rgba(0, 0, 0, 0) 25%,
-        /* Transparent Gap */
-        rgba(255, 0, 150, 0.2) 30%);
-    /* Neon Pink */
-    background-size: 300% 200%;
-    filter: blur(80px);
-    animation: aurora 40s linear infinite;
-  }
 
   .liquid-glass {
     background: rgba(10, 10, 10, 0.35);

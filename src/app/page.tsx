@@ -6,7 +6,6 @@ import Manifesto from "@/components/sections/manifesto";
 import Strengths from "@/components/sections/strengths";
 import SaigonSouls from "@/components/sections/saigon-souls";
 import Testimonials from "@/components/sections/testimonials";
-import Footer from "@/components/sections/footer";
 
 export default function Home() {
   return (
@@ -20,7 +19,6 @@ export default function Home() {
         <Strengths />
         <SaigonSouls />
         <Testimonials />
-        <Footer />
       </div>
     </>
   );

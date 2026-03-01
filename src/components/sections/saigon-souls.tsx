@@ -76,7 +76,7 @@ export default function ResourcesSection() {
         <div className="flex flex-col lg:flex-row mb-20 lg:mb-32">
           <div className="lg:w-1/2">
             <h2 className="text-section-title text-white mb-6 lg:mb-0">
-              Resources & <i className="serif">I</i>ns<i className="serif">i</i>ghts
+              Resources & Insights
             </h2>
           </div>
           <div className="lg:w-1/2">
@@ -113,7 +113,7 @@ export default function ResourcesSection() {
       </div>
 
       {/* DIAGONAL TILES GRID */}
-      <div className="relative w-full h-[100vh] overflow-hidden pointer-events-none mt-12 mb-[-10vh]">
+      <div className="relative w-full h-[100vh] overflow-hidden pointer-events-none mt-12">
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-transparent opacity-0" />
         <div
           className="absolute inset-x-[-20%] inset-y-[-20%] origin-center"
@@ -129,24 +129,32 @@ export default function ResourcesSection() {
       </div>
 
       {/* Call to action center */}
-      <div className="relative mt-12 pb-20 z-20 text-center">
-        <div className="relative inline-block">
-          <p className="text-[12px] uppercase tracking-[0.2em] text-white/40 mb-4">
+      <div className="relative mt-24 pb-32 z-20 text-center">
+        <div className="relative inline-block bg-black/40 backdrop-blur-sm px-10 py-12 rounded-3xl border border-white/5 shadow-2xl">
+          <p className="text-[13px] uppercase tracking-[0.4em] font-semibold text-white/90 mb-6 drop-shadow-sm">
             Innovation & Technology
           </p>
-          <div className="flex items-center justify-center space-x-12 text-[3.5vw] font-light text-white">
-            <span className="opacity-50">Fr<i>o</i>m Hyderabad</span>
-            <span>T<i>o</i> The W<i>o</i>rld</span>
+          <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8 text-[6vw] md:text-[3.5vw] font-medium text-white drop-shadow-lg">
+            <span className="text-white/80">From Hyderabad</span>
+            <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent font-bold">To The World</span>
+          </div>
+
+          {/* Countries Presence */}
+          <div className="mt-14 flex flex-wrap justify-center items-center gap-x-6 gap-y-4 text-[11px] md:text-[13px] uppercase tracking-[0.3em] font-bold text-white max-w-4xl mx-auto px-4 opacity-95">
+            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">USA</span>
+            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">UK</span>
+            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">GERMANY</span>
+            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default text-[#00ff96] drop-shadow-[0_0_12px_rgba(0,255,150,0.5)]">INDIA</span>
+            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">AUSTRALIA</span>
           </div>
         </div>
       </div>
 
-      <style jsx global>{`
-        .serif {
-          font-family: serif;
-          font-style: italic;
-        }
-      `}</style>
+
     </section>
   );
 }

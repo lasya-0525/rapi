@@ -13,10 +13,10 @@ import Image from 'next/image';
 export default function HeroSection() {
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const sentences = [
-    { first: "Intell<i>i</i>gent", second: "Automat<i>i</i>on" },
-    { first: "Rap<i>i</i>d", second: "Innovat<i>i</i>ons" },
-    { first: "Enterpr<i>i</i>se", second: "Development" },
-    { first: "D<i>i</i>g<i>i</i>tal", second: "Transformat<i>i</i>on" },
+    { first: "Intelligent", second: "Automation" },
+    { first: "Rapid", second: "Innovations" },
+    { first: "Enterprise", second: "Development" },
+    { first: "Digital", second: "Transformation" },
   ];
 
   // Cycling typography logic
@@ -74,14 +74,12 @@ export default function HeroSection() {
                   }`}
               >
                 <div className="text-hero text-white flex flex-col md:flex-row gap-x-6 items-center">
-                  <span
-                    className="whitespace-nowrap inline-block"
-                    dangerouslySetInnerHTML={{ __html: sentence.first }}
-                  />
-                  <span
-                    className="whitespace-nowrap inline-block"
-                    dangerouslySetInnerHTML={{ __html: sentence.second }}
-                  />
+                  <span className="whitespace-nowrap inline-block">
+                    {sentence.first}
+                  </span>
+                  <span className="whitespace-nowrap inline-block">
+                    {sentence.second}
+                  </span>
                 </div>
               </li>
             ))}
@@ -120,12 +118,6 @@ export default function HeroSection() {
             font-size: 14vw;
             line-height: 1.1;
           }
-        }
-
-        .text-hero i {
-          font-style: italic;
-          font-family: serif;
-          margin-right: -0.05em;
         }
 
         .animate-spin-slow {

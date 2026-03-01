@@ -46,7 +46,7 @@ const AboutPage = () => {
                 >
                     <motion.div variants={itemVariants} className="max-w-4xl">
                         <h1 className="text-[12vw] lg:text-[8vw] font-normal leading-[0.9] tracking-tighter mb-8">
-                            About <i className="font-serif italic">U</i>s
+                            About Us
                         </h1>
                         <motion.div
                             variants={itemVariants}
@@ -119,7 +119,7 @@ const AboutPage = () => {
                 >
                     <div className="flex flex-col lg:flex-row gap-16 items-center">
                         <div className="lg:w-1/2">
-                            <h2 className="text-4xl md:text-5xl font-light mb-8">How We <i className="font-serif italic">W</i>ork</h2>
+                            <h2 className="text-4xl md:text-5xl font-light mb-8">How We Work</h2>
                             <div className="space-y-6 text-lg font-light text-white/70 leading-relaxed">
                                 <p>
                                     We are an employee-centric organization and we take utmost care in creating a positive environment for employees to bring out the best of their potential. Our work culture imbibes ethical practices and a positive work atmosphere.
@@ -175,7 +175,7 @@ const AboutPage = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-32"
                 >
-                    <h2 className="text-4xl md:text-6xl font-light mb-16 text-center">Our <i className="font-serif italic">L</i>eadersh<i className="font-serif italic">i</i>p</h2>
+                    <h2 className="text-4xl md:text-6xl font-light mb-16 text-center">Our Leadership</h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Pavan */}
                         <motion.div
@@ -188,9 +188,9 @@ const AboutPage = () => {
                         >
                             <div className="p-8 md:p-12">
                                 <div className="flex flex-col md:flex-row gap-8 items-start">
-                                    <div className="w-full md:w-1/3 aspect-[3/4] bg-white/5 rounded-xl overflow-hidden relative">
+                                    <div className="w-full md:w-1/3 aspect-[3/4] bg-transparent rounded-xl overflow-hidden relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                                            src="/images/Pavan.png"
                                             alt="Pavan Kumar Kodedela"
                                             className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                                         />
@@ -217,9 +217,9 @@ const AboutPage = () => {
                         >
                             <div className="p-8 md:p-12">
                                 <div className="flex flex-col md:flex-row gap-8 items-start">
-                                    <div className="w-full md:w-1/3 aspect-[3/4] bg-white/5 rounded-xl overflow-hidden relative">
+                                    <div className="w-full md:w-1/3 aspect-[3/4] bg-transparent rounded-xl overflow-hidden relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop"
+                                            src="/images/Naresh.png"
                                             alt="Naresh Velaga"
                                             className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                                         />
@@ -247,7 +247,7 @@ const AboutPage = () => {
                 >
                     <div className="glass-card p-12 overflow-hidden relative border border-white/5 hover:border-white/10 transition-colors duration-300">
                         <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-violet-500/5 to-transparent -rotate-12 translate-x-1/2 pointer-events-none" />
-                        <h2 className="text-4xl font-light mb-12">Global <i className="font-serif italic">P</i>resence</h2>
+                        <h2 className="text-4xl font-light mb-12">Global Presence</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
                             {[
                                 { region: "USA", email: "info.usa@rapinnotech.com", phone: "+1 949 516 8420", iconBg: "bg-violet-500/20", iconColor: "text-violet-400/90", border: "hover:border-violet-400/20" },
@@ -287,7 +287,7 @@ const AboutPage = () => {
 
                 {/* Footer info */}
                 <div className="text-center opacity-20 text-xs uppercase tracking-[0.4em] py-20">
-                    © 2021 RapinnoTech Solutions
+                    © 2026 RapinnoTech Solutions
                 </div>
             </div>
 
@@ -305,10 +305,7 @@ const AboutPage = () => {
           font-family: 'serif';
           src: local('Times New Roman');
         }
-        i {
-          font-style: italic;
-          font-family: serif;
-        }
+
       `}</style>
         </main>
     );

@@ -73,7 +73,7 @@ export default function Works() {
               What We Do
             </span>
             <h2 className="text-[12vw] md:text-[6vw] font-normal leading-[0.9] tracking-tighter lowercase">
-              our capab<i className="font-serif italic text-white normal-case inline-block">i</i>l<i className="font-serif italic text-white normal-case inline-block">i</i>ties
+              our capabilities
             </h2>
           </div>
           <p className="text-[#666] text-sm max-w-xs leading-relaxed font-light">
@@ -143,10 +143,6 @@ export default function Works() {
         .glass-tag {
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(4px);
-        }
-        i {
-          font-style: italic;
-          font-family: serif;
         }
       `}</style>
     </section>

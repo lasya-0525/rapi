@@ -192,7 +192,7 @@ export default function ServicesPage() {
                         transition={{ duration: 0.8 }}
                         className="text-[12vw] lg:text-[8vw] font-normal leading-[0.9] tracking-tighter mb-12"
                     >
-                        Serv<i className="font-serif italic mr-1">i</i>ces
+                        Services
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -213,7 +213,7 @@ export default function ServicesPage() {
                 <div className="mt-40 text-center pb-32">
                     <p className="text-[12px] uppercase tracking-[0.4em] opacity-40 mb-8">Ready to innovate?</p>
                     <a href="/about" className="text-4xl md:text-6xl font-light hover:opacity-50 transition-opacity">
-                        Work w<i className="font-serif italic">i</i>th us
+                        Work with us
                     </a>
                 </div>
             </div>
@@ -226,10 +226,7 @@ export default function ServicesPage() {
           border-radius: 4px;
         }
 
-        i {
-          font-style: italic;
-          font-family: serif;
-        }
+
       `}</style>
         </main>
     );

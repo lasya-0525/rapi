@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { VisualEditsMessenger } from "orchids-visual-edits";
 import Header from "@/components/sections/header";
+import Footer from "@/components/sections/footer";
 import Cursor from "@/components/ui/cursor";
 import CookieBanner from "@/components/ui/cookie-banner";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 export const metadata: Metadata = {
   title: "RapinnoTech | Rapid Technology Innovations",
@@ -17,10 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="antialiased text-foreground aurora-bg">
+      <body className="antialiased text-foreground bg-transparent overflow-x-hidden">
+        <AuroraBackground />
         <Cursor />
         <Header />
         <main className="relative z-10 w-full content-page">{children}</main>
+        <Footer />
         <CookieBanner />
         <VisualEditsMessenger />
       </body>

@@ -1,0 +1,213 @@
+"use client";
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Heart, Globe2, BookOpen, Smile, ShieldCheck, GraduationCap, Users, Calendar, ArrowUpRight } from 'lucide-react';
+
+const philosophies = [
+    {
+        icon: Smile,
+        title: "Employee-Centric",
+        desc: "A positive environment where you can reach your full potential.",
+        color: "violet"
+    },
+    {
+        icon: Globe2,
+        title: "Diversity & Inclusion",
+        desc: "Cultural diversity brings innovative ideas from across the globe.",
+        color: "amber"
+    },
+    {
+        icon: BookOpen,
+        title: "Learning & Growth",
+        desc: "Continuous learning and organizational goal alignment.",
+        color: "emerald"
+    }
+];
+
+const benefits = [
+    {
+        icon: ShieldCheck,
+        title: "Health & Wellness",
+        desc: "100% company-paid Healthcare Insurance, Term Life, and Accident Insurance."
+    },
+    {
+        icon: Calendar,
+        title: "Time Off",
+        desc: "Yearly holidays, paid vacations, and 10 days of Paid Parental Leave."
+    },
+    {
+        icon: GraduationCap,
+        title: "Development",
+        desc: "Free learning accounts and higher education partnerships with leading universities."
+    },
+    {
+        icon: Users,
+        title: "Engagement",
+        desc: "Competitive sporting activities, company lunches, and regular team-building."
+    }
+];
+
+const processSteps = [
+    { num: "01", title: "Application", desc: "Submit your CV and cover letter via our website or email." },
+    { num: "02", title: "Talent Screen", desc: "Initial conversation about skills, experience, and expectations." },
+    { num: "03", title: "Technical Assessment", desc: "Tasks or tests specific to the role you applied for." },
+    { num: "04", title: "Delivery Interview", desc: "A deeper discussion with the team you would be working with." },
+    { num: "05", title: "Leadership Interview", desc: "Final meeting to discuss career progression and cultural alignment." }
+];
+
+const roles = [
+    { domain: "Development", list: "Flutter, Node.js, Angular, Python, Full Stack Engineer" },
+    { domain: "Design", list: "UI/UX Designer, UI Developer, Motion Graphics" },
+    { domain: "QA & Data", list: "SDET, Data Engineer, Business Analyst" },
+    { domain: "Content", list: "Content Writers, Copywriters" }
+];
+
+export default function CareerPage() {
+    return (
+        <main className="relative min-h-screen text-white bg-transparent selection:bg-white/20 overflow-x-hidden pt-32 pb-24">
+            <div className="container mx-auto px-5 lg:px-10">
+
+                {/* Hero Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="max-w-4xl mb-24"
+                >
+                    <span className="text-[12px] uppercase tracking-[0.3em] text-white/40 mb-6 block">Join Our Team</span>
+                    <h1 className="text-[10vw] lg:text-[7vw] font-normal leading-[0.9] tracking-tighter mb-8">
+                        Careers
+                    </h1>
+                    <p className="text-xl md:text-2xl font-light text-white/60 leading-relaxed">
+                        A culture of continuous learning, employee well-being, and rapid innovation. We balance high-performance expectations with a lively, fun atmosphere.
+                    </p>
+                    <div className="mt-8 pt-8 border-t border-white/10">
+                        <p className="text-xl italic font-serif text-white/90">
+                            "All work and no play makes Jack a dull boy."
+                        </p>
+                        <p className="text-sm uppercase tracking-[0.2em] mt-4 text-white/40">Our Work Culture Motto</p>
+                    </div>
+                </motion.div>
+
+                {/* Culture & Philosophy */}
+                <section className="mb-32">
+                    <h2 className="text-3xl font-light mb-12">Work Culture & Philosophy</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {philosophies.map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="p-8 border border-white/10 rounded-lg hover:bg-white/5 transition-colors"
+                            >
+                                <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6">
+                                    <item.icon className="w-6 h-6 text-white/80" />
+                                </div>
+                                <h3 className="text-xl font-medium mb-3">{item.title}</h3>
+                                <p className="text-white/50 font-light leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Benefits */}
+                <section className="mb-32">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-16">
+                        <h2 className="text-3xl font-light mb-12 text-center">Employee Benefits</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            {benefits.map((benefit, i) => (
+                                <div key={i} className="flex gap-6">
+                                    <div className="w-12 h-12 shrink-0 bg-white/10 rounded-xl flex items-center justify-center">
+                                        <benefit.icon className="w-6 h-6 text-white/80" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-medium mb-2">{benefit.title}</h3>
+                                        <p className="text-white/50 font-light leading-relaxed">{benefit.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Process */}
+                <section className="mb-32">
+                    <h2 className="text-3xl font-light mb-12 text-center">Hiring Process</h2>
+                    <div className="max-w-4xl mx-auto">
+                        {processSteps.map((step, i) => (
+                            <div key={i} className="flex gap-6 md:gap-12 mb-8 last:mb-0 group cursor-default">
+                                <div className="text-4xl md:text-5xl font-light text-white/20 group-hover:text-white transition-colors duration-500">
+                                    {step.num}
+                                </div>
+                                <div className="pt-2 md:pt-4">
+                                    <h3 className="text-xl font-medium mb-2">{step.title}</h3>
+                                    <p className="text-white/50 font-light leading-relaxed">{step.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Openings */}
+                <section className="mb-32">
+                    <h2 className="text-3xl font-light mb-12">Frequent Openings</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {roles.map((role, i) => (
+                            <div key={i} className="p-8 border border-white/10 rounded-lg hover:border-white/30 transition-colors">
+                                <h3 className="text-lg uppercase tracking-widest text-white/60 mb-4">{role.domain}</h3>
+                                <p className="text-xl font-light leading-relaxed">{role.list}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* CTA */}
+                <section className="max-w-2xl mx-auto py-20 border-t border-white/10">
+                    <h2 className="text-3xl md:text-4xl font-light mb-8 text-center">Ready to Redefine Your Potential?</h2>
+
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            const form = e.target as HTMLFormElement;
+                            const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+                            const role = (form.elements.namedItem('role') as HTMLInputElement).value;
+                            const experience = (form.elements.namedItem('experience') as HTMLInputElement).value;
+
+                            const subject = encodeURIComponent(`Career Application: ${role} - ${name}`);
+                            const body = encodeURIComponent(`Name: ${name}\nRole applying for: ${role}\nExperience: ${experience} years\n\n(Please attach your resume before sending this email.)`);
+
+                            window.location.href = `mailto:info.india@rapinnotech.com,info.usa@rapinnotech.com?subject=${subject}&body=${body}`;
+                        }}
+                        className="space-y-6"
+                    >
+                        <div className="space-y-2">
+                            <label className="text-sm uppercase tracking-widest text-white/40">Full Name</label>
+                            <input required name="name" type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="John Doe" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm uppercase tracking-widest text-white/40">Role You're Applying For</label>
+                            <input required name="role" type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="e.g. Flutter Developer" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm uppercase tracking-widest text-white/40">Years of Experience</label>
+                            <input required name="experience" type="number" min="0" step="0.5" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="e.g. 3" />
+                        </div>
+                        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-6">
+                            <button type="submit" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white text-black px-8 py-4 rounded-full hover:bg-white/80 transition-colors font-medium">
+                                Submit Application <ArrowUpRight className="w-4 h-4 text-black" />
+                            </button>
+                            <div className="text-center sm:text-right text-white/50 font-light text-sm">
+                                <p>India: info.india@rapinnotech.com</p>
+                                <p>USA: info.usa@rapinnotech.com</p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    );
+}

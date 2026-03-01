@@ -49,7 +49,7 @@ const Header = () => {
         <div className="flex items-center">
           <a href="/" className="flex items-center group">
             <span className="text-white text-xl md:text-2xl font-normal tracking-tight flex items-baseline select-none">
-              Rap<i className="font-serif italic ml-1">i</i>nnoTech
+              RapinnoTech
             </span>
           </a>
         </div>
@@ -61,7 +61,7 @@ const Header = () => {
           <nav className="hidden lg:flex items-center h-full">
             <ul className="flex items-center gap-10 relative">
               <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
-                <a href="/">h<i className="font-serif italic text-white normal-case inline-block">o</i>me</a>
+                <a href="/">home</a>
               </li>
               {/* Services Navigation */}
               <li
@@ -71,7 +71,7 @@ const Header = () => {
               >
                 <div className="flex items-center gap-2">
                   <a href="/services" className="flex items-center gap-2">
-                    serv<i className="font-serif italic text-white normal-case inline-block">i</i>ces
+                    services
                   </a>
                   <span className={`w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${hoveredMenu === 'services' ? 'opacity-100' : 'opacity-0'}`} />
                 </div>
@@ -115,7 +115,7 @@ const Header = () => {
               >
                 <div className="flex items-center gap-2">
                   <a href="/solutions" className="flex items-center gap-2">
-                    s<i className="font-serif italic text-white normal-case inline-block">o</i>lut<i className="font-serif italic text-white normal-case inline-block">i</i>ons
+                    solutions
                   </a>
                   <span className={`w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${hoveredMenu === 'solutions' ? 'opacity-100' : 'opacity-0'}`} />
                 </div>
@@ -152,13 +152,16 @@ const Header = () => {
               </li>
 
               <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
-                <a href="/about">ab<i className="font-serif italic text-white normal-case inline-block">o</i>ut</a>
+                <a href="/about">about</a>
               </li>
               <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
-                <a href="/#saigon-souls">res<i className="font-serif italic text-white normal-case inline-block">o</i>urces</a>
+                <a href="/resources">resources</a>
               </li>
               <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
-                <a href="/#contact">c<i className="font-serif italic text-white normal-case inline-block">o</i>ntact</a>
+                <a href="/career">careers</a>
+              </li>
+              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <a href="/contact">contact</a>
               </li>
             </ul>
           </nav>
@@ -175,11 +178,7 @@ const Header = () => {
       </div>
 
       <style jsx>{`
-        i {
-          font-style: italic;
-          font-family: serif;
-          margin: 0 0.05em;
-        }
+
         .glass-dropdown {
           background: rgba(10, 10, 10, 0.7);
           backdrop-filter: blur(40px) saturate(1.8);

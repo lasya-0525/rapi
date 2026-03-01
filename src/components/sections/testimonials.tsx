@@ -39,13 +39,13 @@ export default function Testimonials() {
         },
     ];
     return (
-        <section id="testimonials" className="py-20">
-            <div className="container mx-auto px-5 lg:px-10 mb-12">
+        <section id="testimonials" className="py-24 mt-48 z-10 relative bg-transparent">
+            <div className="container mx-auto px-5 lg:px-10 mb-24">
                 <span className="text-[12px] font-medium uppercase tracking-[0.3em] text-[#999] block mb-4">
                     What They Say
                 </span>
-                <h2 className="text-[12vw] md:text-[8vw] font-normal leading-[0.9] tracking-tighter lowercase text-white">
-                    test<i className="font-serif italic text-white normal-case inline-block">i</i>mon<i className="font-serif italic text-white normal-case inline-block">i</i>als
+                <h2 className="text-[12vw] md:text-[8vw] font-normal leading-none tracking-tighter lowercase text-white">
+                    testimonials
                 </h2>
             </div>
             <AnimatedTestimonials testimonials={testimonials} autoplay={true} />

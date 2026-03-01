@@ -121,13 +121,13 @@ export default function Footer() {
         <div className="mt-[20vh] pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-end gap-8">
           <div className="flex items-baseline gap-2">
             <span className="text-white text-xl font-normal tracking-tight flex items-baseline select-none">
-              Rap<i className="font-serif italic ml-1">i</i>nnoTech
+              RapinnoTech
             </span>
           </div>
 
           <div className="flex flex-col md:items-end gap-2">
             <p className="text-[10px] uppercase tracking-[0.1em] opacity-40">
-              © 2024 RapinnoTech Solutions. All rights reserved.
+              © 2026 RapinnoTech Solutions. All rights reserved.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-[10px] uppercase tracking-[0.1em] opacity-40 hover:opacity-100 transition-opacity">
@@ -137,13 +137,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        i {
-          font-style: italic;
-          font-family: serif;
-          margin: 0 0.05em;
-        }
-      `}</style>
     </footer>
   );
 }
