@@ -31,7 +31,7 @@ const tileImages = [
   "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1510511459019-5dee99dc0ff8?q=80&w=2070&auto=format&fit=crop",
+  "/images/resources/abstract-innovation.png",
 ];
 
 const TilesLine = ({ images, speed, direction }: { images: string[], speed: number, direction: 'left' | 'right' }) => {

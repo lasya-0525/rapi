@@ -1,7 +1,8 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 import {
     Globe,
     BrainCircuit,
@@ -26,14 +27,41 @@ import {
     LineChart,
     Settings,
     Search,
-    Lock
-} from 'lucide-react';
+    Lock,
+    ArrowUpRight,
+} from "lucide-react";
 
-const solutionsData = [
+const IMG_PADDING = 12;
+
+const PARALLAX_IMAGES = [
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2670&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2532&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2615&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2670&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2670&auto=format&fit=crop",
+];
+
+type SubSolution = {
+    title: string;
+    desc: string;
+    icon: React.ReactNode;
+};
+
+type SolutionCategory = {
+    category: string;
+    icon: React.ReactNode;
+    description: string;
+    subSolutions: SubSolution[];
+};
+
+const solutionsData: (SolutionCategory & { imgUrl: string })[] = [
     {
         category: "Rapinno Digital Platform (RDP)",
         icon: <Globe className="w-8 h-8" />,
         description: "Rapid application development using pre-structured engines for urgent technological needs.",
+        imgUrl: PARALLAX_IMAGES[0],
         subSolutions: [
             { title: "RDP Ecommerce", desc: "Quick-deploy online retail modules for rapid market entry.", icon: <ShoppingCart className="w-5 h-5" /> },
             { title: "RDP Service Booking", desc: "Comprehensive appointment and slot management platform.", icon: <Calendar className="w-5 h-5" /> },
@@ -47,6 +75,7 @@ const solutionsData = [
         category: "Rapinno IA Ecosystem",
         icon: <BrainCircuit className="w-8 h-8" />,
         description: "Intelligent Automation merging BPM with task-level Artificial Intelligence.",
+        imgUrl: PARALLAX_IMAGES[1],
         subSolutions: [
             { title: "Object Detection", desc: "Automated actions triggered by advanced visual recognition models.", icon: <ScanEye className="w-5 h-5" /> },
             { title: "Image Classification", desc: "AI categorization for quality control and industrial automation.", icon: <Shapes className="w-5 h-5" /> },
@@ -58,6 +87,7 @@ const solutionsData = [
         category: "Rapinno Marketing 360",
         icon: <Target className="w-8 h-8" />,
         description: "Unified brand communication and sales acceleration system.",
+        imgUrl: PARALLAX_IMAGES[2],
         subSolutions: [
             { title: "CRM Tool", desc: "Lead discovery and sales pipeline dashboard for measurable growth.", icon: <Layout className="w-5 h-5" /> },
             { title: "Inside Sales", desc: "Cold calling and email strategies targeting key decision-makers.", icon: <Phone className="w-5 h-5" /> },
@@ -69,6 +99,7 @@ const solutionsData = [
         category: "Rapinno Data Digitization",
         icon: <FileSearch className="w-8 h-8" />,
         description: "Converting unstructured data into actionable digital insights.",
+        imgUrl: PARALLAX_IMAGES[3],
         subSolutions: [
             { title: "Rapinno Assist", desc: "OCR and Machine Learning for converting paper/emails to analytics.", icon: <Search className="w-5 h-5" /> },
             { title: "Unstructured Data", desc: "Pattern recognition for improved corporate decision-making.", icon: <Activity className="w-5 h-5" /> }
@@ -78,6 +109,7 @@ const solutionsData = [
         category: "RapiCon APS",
         icon: <BarChart className="w-8 h-8" />,
         description: "Advanced Planning Systems for complex logistics and production environments.",
+        imgUrl: PARALLAX_IMAGES[4],
         subSolutions: [
             { title: "Strategic Planning", desc: "High-level visualization tools for long-term business goals.", icon: <LineChart className="w-5 h-5" /> },
             { title: "Operational Optimization", desc: "Real-time decision-support techniques based on daily data.", icon: <Settings className="w-5 h-5" /> }
@@ -87,6 +119,7 @@ const solutionsData = [
         category: "Rapinno Adaptive Sourcing",
         icon: <Users2 className="w-8 h-8" />,
         description: "Dynamic IT staffing and agile resource alignment.",
+        imgUrl: PARALLAX_IMAGES[5],
         subSolutions: [
             { title: "IT Resource Alignment", desc: "Rapidly matching technical talent to shifting market opportunities.", icon: <UserPlus className="w-5 h-5" /> },
             { title: "Specialized Recruitment", desc: "Sourcing performance-ready technical resources for agile teams.", icon: <Search className="w-5 h-5" /> }
@@ -96,6 +129,7 @@ const solutionsData = [
         category: "Rapinno Managed Services",
         icon: <CloudCog className="w-8 h-8" />,
         description: "Continuous infrastructure and security oversight.",
+        imgUrl: PARALLAX_IMAGES[6],
         subSolutions: [
             { title: "Cloud Managed", desc: "24/7 Azure, AWS, and GCP monitoring and optimization.", icon: <CloudCog className="w-5 h-5" /> },
             { title: "Managed SOC", desc: "Log monitoring, risk mitigation, and compliance (GDPR/HIPAA).", icon: <Lock className="w-5 h-5" /> }
@@ -103,12 +137,135 @@ const solutionsData = [
     }
 ];
 
+function TextParallaxContent({
+    imgUrl,
+    subheading,
+    heading,
+    children,
+}: {
+    imgUrl: string;
+    subheading: string;
+    heading: string;
+    children: React.ReactNode;
+}) {
+    return (
+        <div
+            style={{
+                paddingLeft: IMG_PADDING,
+                paddingRight: IMG_PADDING,
+            }}
+        >
+            <div className="relative h-[150vh]">
+                <StickyImage imgUrl={imgUrl} />
+                <OverlayCopy heading={heading} subheading={subheading} />
+            </div>
+            {children}
+        </div>
+    );
+}
+
+function StickyImage({ imgUrl }: { imgUrl: string }) {
+    const targetRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["end end", "end start"],
+    });
+
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+    return (
+        <motion.div
+            style={{
+                backgroundImage: `url(${imgUrl})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                height: `calc(100vh - ${IMG_PADDING * 2}px)`,
+                top: IMG_PADDING,
+                scale,
+            }}
+            ref={targetRef}
+            className="sticky z-0 overflow-hidden rounded-3xl"
+        >
+            <motion.div
+                className="absolute inset-0 bg-black/70"
+                style={{ opacity }}
+            />
+        </motion.div>
+    );
+}
+
+function OverlayCopy({ subheading, heading }: { subheading: string; heading: string }) {
+    const targetRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["start end", "end start"],
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], [250, -250]);
+    const opacity = useTransform(scrollYProgress, [0.25, 0.5, 0.75], [0, 1, 0]);
+
+    return (
+        <motion.div
+            style={{ y, opacity }}
+            ref={targetRef}
+            className="absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white"
+        >
+            <p className="mb-2 text-center text-xl font-light text-white/70 md:mb-4 md:text-3xl">
+                {subheading}
+            </p>
+            <p className="text-center text-4xl font-normal tracking-tight md:text-7xl">{heading}</p>
+        </motion.div>
+    );
+}
+
+function SolutionContent({ category }: { category: (typeof solutionsData)[0] }) {
+    return (
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
+            <div className="md:col-span-4">
+                <div className="text-white/40 mb-6">{category.icon}</div>
+                <h2 className="text-3xl font-normal tracking-tight text-white">
+                    {category.category}
+                </h2>
+                <p className="mt-4 text-lg font-light leading-relaxed text-white/60">
+                    {category.description}
+                </p>
+                <Link
+                    href="/contact"
+                    className="mt-8 inline-flex items-center gap-2 rounded bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
+                >
+                    Learn more <ArrowUpRight className="h-4 w-4" />
+                </Link>
+            </div>
+            <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {category.subSolutions.map((solution, index) => (
+                    <motion.div
+                        key={solution.title}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.06 }}
+                        className="glass-card p-6 group hover:bg-white/5 transition-colors"
+                    >
+                        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:text-white">
+                            {solution.icon}
+                        </div>
+                        <h3 className="text-lg font-normal text-white mb-2">{solution.title}</h3>
+                        <p className="text-sm font-light leading-relaxed text-white/50">
+                            {solution.desc}
+                        </p>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function SolutionsPage() {
     return (
-        <main className="relative min-h-screen text-white selection:bg-white/20 overflow-x-hidden">
-            <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-32 pb-20">
-                {/* Page Header */}
-                <div className="max-w-4xl mb-32">
+        <main className="relative min-h-screen bg-black text-white selection:bg-white/20 overflow-x-hidden">
+            <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-32 pb-8">
+                <div className="max-w-4xl mb-20">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -126,86 +283,47 @@ export default function SolutionsPage() {
                         A comprehensive suite of specialized platforms and frameworks designed to solve specific business hurdles with elite precision.
                     </motion.p>
                 </div>
+            </div>
 
-                {/* Categories Grid */}
-                <div className="space-y-24">
-                    {solutionsData.map((category, catIndex) => (
-                        <section key={category.category} className="relative">
-                            <div className="flex flex-col lg:flex-row gap-16">
-                                {/* Category Info */}
-                                <div className="lg:w-1/3">
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -30 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        className="sticky top-32 glass-card p-10"
-                                    >
-                                        <div className="text-white/40 mb-8">{category.icon}</div>
-                                        <h2 className="text-3xl font-normal mb-4 uppercase tracking-tight leading-tight">{category.category}</h2>
-                                        <p className="text-white/60 font-light leading-relaxed">
-                                            {category.description}
-                                        </p>
-                                        <div className="mt-12 pt-8 border-t border-white/10">
-                                            <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Suite {catIndex + 1}</span>
-                                        </div>
-                                    </motion.div>
-                                </div>
+            {solutionsData.map((category, index) => (
+                <TextParallaxContent
+                    key={category.category}
+                    imgUrl={category.imgUrl}
+                    subheading={`Solution Suite ${index + 1}`}
+                    heading={category.category}
+                >
+                    <SolutionContent category={category} />
+                </TextParallaxContent>
+            ))}
 
-                                {/* Sub-solutions Grid */}
-                                <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {category.subSolutions.map((solution, index) => (
-                                        <motion.div
-                                            key={solution.title}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1 }}
-                                            className="glass-card p-8 group hover:bg-white/5 transition-colors cursor-default"
-                                        >
-                                            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                                                <div className="text-white/60 group-hover:text-white transition-colors">
-                                                    {solution.icon}
-                                                </div>
-                                            </div>
-                                            <h3 className="text-xl font-normal mb-4 group-hover:translate-x-1 transition-transform">{solution.title}</h3>
-                                            <p className="text-sm font-light leading-relaxed text-white/40 group-hover:text-white/60 transition-colors">
-                                                {solution.desc}
-                                            </p>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </section>
-                    ))}
-                </div>
-
-                {/* Global Footer Teaser */}
-                <div className="mt-40 text-center pb-32">
-                    <p className="text-[12px] uppercase tracking-[0.4em] opacity-40 mb-8">Ready for a tailor-made solution?</p>
-                    <a href="/services" className="text-4xl md:text-6xl font-light hover:opacity-50 transition-opacity">
-                        Explore Ser<i className="font-serif italic">v</i>ices
-                    </a>
-                </div>
+            <div className="py-40 text-center pb-32">
+                <p className="text-[12px] uppercase tracking-[0.4em] text-white/40 mb-8">
+                    Ready for a tailor-made solution?
+                </p>
+                <Link
+                    href="/services"
+                    className="text-4xl md:text-6xl font-light text-white hover:opacity-70 transition-opacity"
+                >
+                    Explore Ser<i className="font-serif italic">v</i>ices
+                </Link>
             </div>
 
             <style jsx global>{`
                 .glass-card {
-                background: rgba(255, 255, 255, 0.03);
-                backdrop-filter: blur(20px);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 4px;
+                    background: rgba(255, 255, 255, 0.03);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 4px;
                 }
-
                 i {
-                font-style: italic;
-                font-family: serif;
+                    font-style: italic;
+                    font-family: serif;
                 }
             `}</style>
         </main>
     );
 }
 
-// Simple fallback for Lucide icons not found in the import list above
 function Phone({ className }: { className?: string }) {
     return (
         <svg

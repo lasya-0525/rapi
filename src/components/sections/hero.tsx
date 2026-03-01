@@ -28,7 +28,7 @@ export default function HeroSection() {
   }, [sentences.length]);
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden flex items-center justify-center">
+    <section className="relative w-screen h-screen overflow-hidden flex items-center justify-center -mt-[120px] lg:-mt-[100px]">
       {/* Background Lens Artwork Container */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         {/* Grainy Texture Overlay */}

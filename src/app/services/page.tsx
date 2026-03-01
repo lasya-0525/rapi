@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { BouncyCardsFeatures } from '@/components/sections/bouncy-cards-features';
 import {
     Code2,
     Cpu,
@@ -182,7 +183,7 @@ export default function ServicesPage() {
         <main className="relative min-h-screen text-white selection:bg-white/20 overflow-x-hidden">
 
 
-            <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-32 pb-20">
+            <div className="relative z-10 container mx-auto px-5 lg:px-10 content-page pb-20">
                 {/* Page Header */}
                 <div className="max-w-4xl mb-32">
                     <motion.h1
@@ -203,64 +204,10 @@ export default function ServicesPage() {
                     </motion.p>
                 </div>
 
-                {/* Categories Grid */}
-                <div className="space-y-24">
-                    {servicesData.map((category, catIndex) => (
-                        <section key={category.category} className="relative">
-                            <div className="flex flex-col lg:flex-row gap-16">
-                                {/* Category Info */}
-                                <div className="lg:w-1/3">
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -30 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        className="sticky top-32 glass-card p-10"
-                                    >
-                                        <div className="text-white/40 mb-8">{category.icon}</div>
-                                        <h2 className="text-3xl font-normal mb-6 uppercase tracking-tight">{category.category}</h2>
-                                        <p className="text-white/60 font-light leading-relaxed">
-                                            {category.description}
-                                        </p>
-                                    </motion.div>
-                                </div>
-
-                                {/* Items Grid */}
-                                <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {category.items.map((item, index) => (
-                                        <motion.div
-                                            key={item.title}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.1 }}
-                                            className="glass-card p-8 group hover:bg-white/5 transition-colors cursor-default"
-                                        >
-                                            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                                                <div className="text-white/60 group-hover:text-white transition-colors">
-                                                    {item.icon}
-                                                </div>
-                                            </div>
-                                            <h3 className="text-xl font-normal mb-4 group-hover:translate-x-1 transition-transform">{item.title}</h3>
-                                            <p className="text-sm font-light leading-relaxed text-white/40 mb-6">
-                                                {item.desc}
-                                            </p>
-
-                                            {/* Capabilities List */}
-                                            <div className="space-y-2">
-                                                {item.capabilities.map((cap) => (
-                                                    <div key={cap} className="flex items-center gap-3">
-                                                        <div className="w-1 h-1 rounded-full bg-white/20" />
-                                                        <span className="text-[11px] uppercase tracking-widest text-white/60 font-medium">{cap}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </section>
-                    ))}
-                </div>
+                {/* Bouncy card grid per category */}
+                {servicesData.map((category) => (
+                    <BouncyCardsFeatures key={category.category} category={category} />
+                ))}
 
                 {/* Global Footer Teaser */}
                 <div className="mt-40 text-center pb-32">

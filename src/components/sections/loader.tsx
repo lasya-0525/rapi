@@ -41,10 +41,13 @@ export default function Loader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[10000] flex items-center justify-center transition-opacity duration-1000 ease-in-out aurora-bg ${step === 2 ? "opacity-0 pointer-events-none" : "opacity-100"
+      className={`fixed inset-0 z-[100000] flex items-center justify-center transition-all duration-1000 ease-in-out bg-black ${step === 2 ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       id="loader"
     >
+      {/* Background layer for Step 1 */}
+      {step === 1 && <div className="absolute inset-0 aurora-bg opacity-30 pointer-events-none" />}
+
       {/* Step 0: Animated Greeting */}
       <div
         className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${step === 0 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10 pointer-events-none"

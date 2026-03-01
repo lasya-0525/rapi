@@ -43,8 +43,8 @@ const Header = () => {
   const [hoveredMenu, setHoveredMenu] = useState<null | 'services' | 'solutions'>(null);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] transition-colors duration-300">
-      <div className="container mx-auto px-5 lg:px-10 h-[80px] flex items-center justify-between">
+    <header className="fixed top-0 left-0 w-full z-[100] transition-all duration-300 liquid-glass">
+      <div className="container mx-auto px-5 lg:px-10 h-[70px] flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
           <a href="/" className="flex items-center group">
@@ -58,18 +58,23 @@ const Header = () => {
         <div className="flex items-center gap-12 h-full">
 
           {/* Navigation Anchors */}
-          <nav className="hidden lg:flex items-start h-full pt-[12px]">
-            <ul className="flex flex-col items-end gap-[4px] relative">
+          <nav className="hidden lg:flex items-center h-full">
+            <ul className="flex items-center gap-10 relative">
+              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <a href="/">h<i className="font-serif italic text-white normal-case inline-block">o</i>me</a>
+              </li>
               {/* Services Navigation */}
               <li
-                className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors cursor-pointer group pb-2"
+                className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors cursor-pointer group flex items-center h-[70px]"
                 onMouseEnter={() => setHoveredMenu('services')}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <a href="/services" className="flex items-center gap-2">
-                  serv<i className="font-serif italic text-white normal-case inline-block">i</i>ces
+                <div className="flex items-center gap-2">
+                  <a href="/services" className="flex items-center gap-2">
+                    serv<i className="font-serif italic text-white normal-case inline-block">i</i>ces
+                  </a>
                   <span className={`w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${hoveredMenu === 'services' ? 'opacity-100' : 'opacity-0'}`} />
-                </a>
+                </div>
 
                 {/* Services Mega Menu */}
                 <AnimatePresence>
@@ -79,9 +84,9 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="absolute right-0 top-full pt-4 pointer-events-auto"
+                      className="absolute right-0 top-full pt-0 pointer-events-auto"
                     >
-                      <div className="glass-dropdown p-8 min-w-[65vw] grid grid-cols-4 gap-8">
+                      <div className="glass-dropdown p-8 min-w-[65vw] grid grid-cols-4 gap-8 translate-y-[-1px]">
                         {services.map((cat) => (
                           <div key={cat.category} className="flex flex-col space-y-4">
                             <h4 className="text-[11px] font-semibold text-white tracking-[0.2em] border-b border-white/10 pb-2">
@@ -104,14 +109,16 @@ const Header = () => {
 
               {/* Solutions Navigation */}
               <li
-                className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors cursor-pointer group pb-2"
+                className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors cursor-pointer group flex items-center h-[70px]"
                 onMouseEnter={() => setHoveredMenu('solutions')}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <a href="/solutions" className="flex items-center gap-2">
-                  s<i className="font-serif italic text-white normal-case inline-block">o</i>lut<i className="font-serif italic text-white normal-case inline-block">i</i>ons
+                <div className="flex items-center gap-2">
+                  <a href="/solutions" className="flex items-center gap-2">
+                    s<i className="font-serif italic text-white normal-case inline-block">o</i>lut<i className="font-serif italic text-white normal-case inline-block">i</i>ons
+                  </a>
                   <span className={`w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${hoveredMenu === 'solutions' ? 'opacity-100' : 'opacity-0'}`} />
-                </a>
+                </div>
 
                 {/* Solutions Mega Menu */}
                 <AnimatePresence>
@@ -121,9 +128,9 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="absolute right-0 top-full pt-4 pointer-events-auto"
+                      className="absolute right-0 top-full pt-0 pointer-events-auto"
                     >
-                      <div className="glass-dropdown p-8 min-w-[50vw] grid grid-cols-2 gap-12">
+                      <div className="glass-dropdown p-8 min-w-[50vw] grid grid-cols-2 gap-12 translate-y-[-1px]">
                         {solutions.map((cat) => (
                           <div key={cat.category} className="flex flex-col space-y-5">
                             <h4 className="text-[11px] font-bold text-white tracking-[0.2em] border-b border-white/10 pb-3 uppercase">
@@ -144,13 +151,13 @@ const Header = () => {
                 </AnimatePresence>
               </li>
 
-              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors">
+              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
                 <a href="/about">ab<i className="font-serif italic text-white normal-case inline-block">o</i>ut</a>
               </li>
-              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors">
+              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
                 <a href="/#saigon-souls">res<i className="font-serif italic text-white normal-case inline-block">o</i>urces</a>
               </li>
-              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors">
+              <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
                 <a href="/#contact">c<i className="font-serif italic text-white normal-case inline-block">o</i>ntact</a>
               </li>
             </ul>
@@ -174,11 +181,11 @@ const Header = () => {
           margin: 0 0.05em;
         }
         .glass-dropdown {
-          background: rgba(10, 10, 10, 0.85);
-          backdrop-filter: blur(40px) saturate(1.5);
+          background: rgba(10, 10, 10, 0.7);
+          backdrop-filter: blur(40px) saturate(1.8);
           border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-          border-radius: 4px;
+          border-radius: 2px;
         }
       `}</style>
     </header>

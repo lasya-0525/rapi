@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { VisualEditsMessenger } from "orchids-visual-edits";
-import Loader from "@/components/sections/loader";
 import Header from "@/components/sections/header";
 import Cursor from "@/components/ui/cursor";
 import CookieBanner from "@/components/ui/cookie-banner";
@@ -19,10 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="antialiased text-foreground aurora-bg">
-        <Loader />
         <Cursor />
         <Header />
-        <main className="relative z-10 w-full">{children}</main>
+        <main className="relative z-10 w-full content-page">{children}</main>
         <CookieBanner />
         <VisualEditsMessenger />
       </body>

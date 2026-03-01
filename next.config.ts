@@ -30,7 +30,16 @@ const nextConfig: NextConfig = {
         loaders: [loaderPath]
       }
     }
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/dashboard',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 } as NextConfig;
 
 export default nextConfig;
