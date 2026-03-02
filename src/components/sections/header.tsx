@@ -103,9 +103,11 @@ const Header = () => {
           {/* Logo Section */}
           <div className="flex items-center">
             <a href="/" className="flex items-center group" onClick={closeMobile}>
-              <span className="text-white text-xl md:text-2xl font-normal tracking-tight flex items-baseline select-none">
-                RapinnoTech
-              </span>
+              <img
+                src="/images/logo.svg"
+                alt="RapinnoTech"
+                className="h-8 md:h-10 w-auto"
+              />
             </a>
           </div>
 

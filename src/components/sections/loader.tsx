@@ -73,9 +73,11 @@ export default function Loader() {
 
         {/* Branding */}
         <div className="flex flex-col items-center">
-          <span className="text-xl md:text-2xl font-normal tracking-tight text-white">
-            Rapinno<span className="text-[#054FB8]">Tech</span>
-          </span>
+          <img
+            src="/images/logo.svg"
+            alt="RapinnoTech"
+            className="h-8 w-auto"
+          />
           {/* Loading bar */}
           <div className="mt-4 w-32 h-[2px] bg-white/10 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-[#054FB8] to-[#F32913] rounded-full animate-loading-bar" />

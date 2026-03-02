@@ -67,6 +67,13 @@ export default function Footer() {
 
           {/* Section Title */}
           <div className="col-span-12">
+            <a href="/">
+              <img
+                src="/images/logo.svg"
+                alt="RapinnoTech"
+                className="h-10 w-auto mb-8"
+              />
+            </a>
             <h2 className="text-[12px] font-medium uppercase tracking-[0.1em] text-foreground mb-12">
               Contact
             </h2>
