@@ -87,6 +87,10 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   category: "technology",
+  icons: {
+    icon: "/logo_seo.jpg",
+    apple: "/logo_seo.jpg",
+  },
 };
 
 const organizationSchema = {

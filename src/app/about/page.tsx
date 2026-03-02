@@ -1,4 +1,4 @@
-    "use client";
+"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -197,7 +197,22 @@ const AboutPage = () => {
                                     </div>
                                     <div className="md:w-2/3">
                                         <h3 className="text-3xl font-normal mb-1 text-white">Naresh Velaga</h3>
-                                        <p className="text-sm uppercase tracking-widest text-amber-300/80 mb-6">Founder</p>
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <p className="text-sm uppercase tracking-widest text-amber-300/80">Founder</p>
+                                            <a
+                                                href="https://www.linkedin.com/in/narvelglobal/"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="Naresh Velaga LinkedIn"
+                                                className="flex items-center justify-center w-7 h-7 rounded-full border border-white/10 text-white/40 hover:text-white hover:border-amber-400/40 hover:bg-amber-500/10 transition-all duration-300"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                                    <rect width="4" height="12" x="2" y="9" />
+                                                    <circle cx="4" cy="4" r="2" />
+                                                </svg>
+                                            </a>
+                                        </div>
                                         <p className="text-white/60 leading-relaxed font-light text-sm md:text-base">
                                             Naresh Velaga is a serial entrepreneur with 10+ years of experience in the IT solutions and service industry. Having core strength in developing and implementing Customer-Centric On-Demand Technology Solutions &amp; Services, currently, Naresh acts as the Founder of RapinnoTech Solutions Private Limited which deals in providing faster and smarter software solutions to businesses all over the globe.
                                         </p>
