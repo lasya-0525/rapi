@@ -26,26 +26,38 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
                     {/* Form Component */}
                     <div className="lg:col-span-7">
-                        <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-8" onSubmit={(e) => {
+                            e.preventDefault();
+                            const form = e.target as HTMLFormElement;
+                            const firstName = (form.elements.namedItem('firstName') as HTMLInputElement).value;
+                            const lastName = (form.elements.namedItem('lastName') as HTMLInputElement).value;
+                            const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+                            const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+
+                            const subject = encodeURIComponent(`Website Inquiry from ${firstName} ${lastName}`);
+                            const body = encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+                            window.location.href = `mailto:info@rapinnotech.com?subject=${subject}&body=${body}`;
+                        }}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-2">
                                     <label className="text-sm uppercase tracking-widest text-white/40">First Name</label>
-                                    <input type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="John" />
+                                    <input required name="firstName" type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="John" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm uppercase tracking-widest text-white/40">Last Name</label>
-                                    <input type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="Doe" />
+                                    <input required name="lastName" type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="Doe" />
                                 </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm uppercase tracking-widest text-white/40">Email</label>
-                                <input type="email" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="john@example.com" />
+                                <input required name="email" type="email" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="john@example.com" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm uppercase tracking-widest text-white/40">Message</label>
-                                <textarea rows={4} className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors resize-none" placeholder="How can we help you?" />
+                                <textarea required name="message" rows={4} className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors resize-none" placeholder="How can we help you?" />
                             </div>
-                            <button type="button" className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full hover:bg-white/80 transition-colors font-medium mt-8">
+                            <button type="submit" className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full hover:bg-white/80 transition-colors font-medium mt-8">
                                 Send Message <Send className="w-4 h-4" />
                             </button>
                         </form>

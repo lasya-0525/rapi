@@ -41,8 +41,11 @@
   --color-muted: #1a1a1a;
   --color-muted-foreground: #999999;
 
-  --color-accent: #5c5c42;
+  --color-accent: #054FB8;
   --color-accent-foreground: #ffffff;
+
+  --color-brand-blue: #054FB8;
+  --color-brand-red: #F32913;
 
   --color-destructive: #ef4444;
   --color-destructive-foreground: #fafafa;
@@ -136,8 +139,10 @@
     --secondary-foreground: #999999;
     --muted: #1a1a1a;
     --muted-foreground: #999999;
-    --accent: #5c5c42;
+    --accent: #054FB8;
     --accent-foreground: #ffffff;
+    --brand-blue: #054FB8;
+    --brand-red: #F32913;
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
     --border: #333333;

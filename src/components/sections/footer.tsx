@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Mail } from "lucide-react";
 
 /**
@@ -130,9 +131,9 @@ export default function Footer() {
               © 2026 RapinnoTech Solutions. All rights reserved.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-[10px] uppercase tracking-[0.1em] opacity-40 hover:opacity-100 transition-opacity">
+              <Link href="/privacy-policy" className="text-[10px] uppercase tracking-[0.1em] opacity-40 hover:opacity-100 transition-opacity">
                 Privacy Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

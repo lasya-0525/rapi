@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { slugify } from "@/utils/slugify";
 import {
     Globe,
     BrainCircuit,
@@ -239,22 +240,27 @@ function SolutionContent({ category }: { category: (typeof solutionsData)[0] }) 
             </div>
             <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {category.subSolutions.map((solution, index) => (
-                    <motion.div
-                        key={solution.title}
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.06 }}
-                        className="glass-card p-6 group hover:bg-white/5 transition-colors"
-                    >
-                        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:text-white">
-                            {solution.icon}
-                        </div>
-                        <h3 className="text-lg font-normal text-white mb-2">{solution.title}</h3>
-                        <p className="text-sm font-light leading-relaxed text-white/50">
-                            {solution.desc}
-                        </p>
-                    </motion.div>
+                    <Link key={solution.title} href={`/solutions/${slugify(solution.title)}`}>
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.06 }}
+                            className="glass-card p-6 group hover:bg-white/5 transition-colors h-full"
+                        >
+                            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:text-white">
+                                {solution.icon}
+                            </div>
+                            <h3 className="text-lg font-normal text-white mb-2">{solution.title}</h3>
+                            <p className="text-sm font-light leading-relaxed text-white/50 mb-4">
+                                {solution.desc}
+                            </p>
+                            <div className="mt-auto flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/40 group-hover:text-white transition-colors">
+                                <span>Explore Solution</span>
+                                <ArrowUpRight className="h-3 w-3" />
+                            </div>
+                        </motion.div>
+                    </Link>
                 ))}
             </div>
         </div>

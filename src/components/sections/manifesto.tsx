@@ -1,157 +1,147 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useInView, motion } from "framer-motion";
+import { useInView, motion, useScroll, useTransform } from "framer-motion";
+
+/**
+ * Manifesto / About Us Section
+ * Features:
+ * - Signature Lens Backdrop (Grey Ball)
+ * - Premium stagger-line text reveal
+ * - Parallax scroll effects on text
+ */
 
 const manifestoLines = [
-  "We Innovate,",
-  "Automate, and",
-  "Transform.",
-  "We are technology natives",
-  "embracing the",
-  "creative freedom to",
-  "deliver solutions",
-  "that connect,",
-  "scale, and",
-  "inspire.",
+  { text: "We Innovate,", size: "text-[8vw] md:text-[6vw]" },
+  { text: "Automate, and", size: "text-[8vw] md:text-[6vw]" },
+  { text: "Transform.", size: "text-[10vw] md:text-[8vw]", serif: true, accent: true },
+  { text: "We are technology natives", size: "text-[4vw] md:text-[2.5vw]" },
+  { text: "embracing the", size: "text-[4vw] md:text-[2.5vw]" },
+  { text: "creative freedom to", size: "text-[4vw] md:text-[2.5vw]" },
+  { text: "deliver solutions", size: "text-[6vw] md:text-[4vw]", serif: true },
+  { text: "that connect,", size: "text-[4vw] md:text-[2.5vw]" },
+  { text: "scale, and", size: "text-[4vw] md:text-[2.5vw]" },
+  { text: "inspire.", size: "text-[8vw] md:text-[5vw]", accent: true },
 ];
 
-const ManifestoLine = ({ text }: { text: string }) => {
+const ManifestoLine = ({ line, index }: { line: typeof manifestoLines[0], index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
-    amount: 0.8,
+    amount: 0.5,
     margin: "0px 0px -10% 0px",
+    once: false
   });
 
   return (
-    <span
+    <div
       ref={ref}
-      className="relative block overflow-hidden leading-[1.4] text-manifesto"
+      className={`relative overflow-hidden ${line.size} ${line.serif ? 'font-serif italic' : 'font-sans'} tracking-tighter leading-[1.1]`}
     >
-      <span
-        className={`inline-block transition-transform duration-1000 ease-out ${isInView ? "translate-y-0" : "translate-y-full"
-          }`}
+      <motion.span
+        initial={{ y: "100%", opacity: 0, rotateX: 45 }}
+        animate={isInView ? { y: 0, opacity: 1, rotateX: 0 } : { y: "100%", opacity: 0, rotateX: 45 }}
+        transition={{
+          duration: 1.2,
+          delay: index * 0.05,
+          ease: [0.16, 1, 0.3, 1]
+        }}
+        className={`inline-block ${line.accent ? 'bg-gradient-to-r from-white via-white/80 to-white/40 bg-clip-text text-transparent' : 'text-white'}`}
       >
-        {text}
-      </span>
-    </span>
+        {line.text}
+      </motion.span>
+    </div>
   );
 };
 
-const ManifestoIcon = () => (
-  <svg
-    width="80"
-    height="80"
-    viewBox="0 0 100 100"
-    className="manifesto--icon mt-16 opacity-80"
-    aria-hidden="true"
-  >
-    {/* Three-circle icon representing RapinnoTech's core values:
-      Innovate, Automate, Transform. */}
-    <circle
-      cx="50"
-      cy="35"
-      r="18"
-      fill="none"
-      stroke="white"
-      strokeWidth="1.5"
-    />
-    <circle
-      cx="38"
-      cy="58"
-      r="18"
-      fill="none"
-      stroke="white"
-      strokeWidth="1.5"
-    />
-    <circle
-      cx="62"
-      cy="58"
-      r="18"
-      fill="none"
-      stroke="white"
-      strokeWidth="1.5"
-    />
-  </svg>
-);
+const BackgroundLens = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.6, 0.2]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden">
+      <motion.div
+        style={{ scale, opacity }}
+        className="relative w-[90vw] h-[90vw] max-w-[1200px] max-h-[1200px] flex items-center justify-center"
+      >
+        {/* Glow */}
+        <div className="absolute inset-0 bg-radial from-[#5c5c42]/30 via-transparent to-transparent blur-[120px]" />
+
+        {/* Lens */}
+        <div className="relative w-full h-full rounded-full border border-white/5 shadow-[0_0_150px_rgba(92,92,66,0.2)] overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center mix-blend-screen opacity-20"
+            style={{
+              backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')`,
+              filter: 'contrast(120%)'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#5c5c42]/10 via-[#1a1a1a]/40 to-black rounded-full" />
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 export default function Manifesto() {
   return (
     <section
       id="manifesto"
-      className="relative min-h-[80vh] py-24 md:py-32 flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[120vh] py-32 md:py-48 flex flex-col items-center justify-center overflow-hidden bg-black"
     >
-      {/* Section Title */}
-      <span className="absolute top-10 left-5 md:left-10 text-section-title tracking-[0.1em] opacity-40">
-        About Us
-      </span>
+      {/* Background signature element */}
+      <BackgroundLens />
 
-      <div className="container max-w-[80vw] flex flex-col items-center">
-        <div className="flex flex-col items-center text-center space-y-2">
+      {/* Section Title */}
+      <div className="absolute top-16 left-5 md:left-10 z-20">
+        <span className="text-[10px] md:text-[12px] font-medium uppercase tracking-[0.4em] text-white/40 block mb-2">
+          02 — About Us
+        </span>
+        <div className="w-12 h-px bg-white/20" />
+      </div>
+
+      <div className="container relative z-10 max-w-[90vw] flex flex-col items-center">
+        <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
           {manifestoLines.map((line, index) => (
-            <ManifestoLine key={index} text={line} />
+            <ManifestoLine key={index} line={line} index={index} />
           ))}
         </div>
 
-        <div className="mt-20 flex flex-col items-center">
-          <ManifestoIcon />
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-12"
-          >
-            <a
-              href="/about"
-              className="px-8 py-3 rounded-full border border-white/20 text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500"
-            >
-              Read Full Story
-            </a>
-          </motion.div>
-        </div>
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="mt-32 flex flex-col items-center space-y-12 w-full max-w-2xl px-4"
+        >
+          <div className="h-20 w-px bg-gradient-to-b from-white/20 to-transparent" />
 
-        {/* About description teaser */}
-        <p className="mt-16 text-center text-[16px] md:text-[18px] text-white/60 font-light max-w-3xl leading-relaxed">
-          RapinnoTech Solutions is a software innovation company dedicated to delivering technological breakthroughs at a rapid pace. Our mission is to help clients achieve their business goals through innovative solutions and flexible service offerings.
-        </p>
+          <p className="text-center text-[18px] md:text-[22px] text-white/50 font-light leading-relaxed">
+            RapinnoTech Solutions is a software innovation company dedicated to delivering technological breakthroughs at a rapid pace.
+          </p>
+
+          <a
+            href="/about"
+            className="group relative px-12 py-5 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-white/30"
+          >
+            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+            <span className="relative z-10 text-[11px] uppercase tracking-[0.3em] font-medium text-white group-hover:text-black transition-colors duration-500">
+              Read Full Story
+            </span>
+          </a>
+        </motion.div>
       </div>
 
       <style jsx global>{`
-        .text-manifesto {
-          font-family: var(--font-sans);
-          font-size: 4.5vw;
-          line-height: 1.4;
-          font-weight: 400;
-          letter-spacing: -0.01em;
-          color: #ffffff;
-        }
-
-        @media (max-width: 768px) {
-          .text-manifesto {
-            font-size: 8vw;
-            line-height: 1.3;
-          }
-        }
-
-        .text-section-title {
-          font-size: 12px;
-          font-weight: 500;
-          text-transform: uppercase;
-        }
-
-        .manifesto--icon {
-          animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.6;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.02);
-          }
+        @font-face {
+          font-family: 'serif';
+          src: local('Times New Roman');
         }
       `}</style>
     </section>

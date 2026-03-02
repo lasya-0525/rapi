@@ -6,8 +6,9 @@ export const metadata: Metadata = {
         "Learn about RapinnoTech Solutions — our mission to deliver rapid technology innovations, our leadership team, global offices in USA, Germany, and India, and what makes us a preferred technology partner.",
     keywords: [
         "about RapinnoTech",
+        "Naresh Velaga Founder",
         "Pavan Kumar Kodedela CEO",
-        "Naresh Velaga Co-Founder",
+
         "RapinnoTech leadership",
         "software company California USA",
         "IT company Hyderabad Bangalore",

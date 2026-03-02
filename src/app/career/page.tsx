@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Globe2, BookOpen, Smile, ShieldCheck, GraduationCap, Users, Calendar, ArrowUpRight } from 'lucide-react';
+import { Globe2, BookOpen, Smile, Users, ArrowUpRight } from 'lucide-react';
 
 const philosophies = [
     {
@@ -25,36 +25,7 @@ const philosophies = [
     }
 ];
 
-const benefits = [
-    {
-        icon: ShieldCheck,
-        title: "Health & Wellness",
-        desc: "100% company-paid Healthcare Insurance, Term Life, and Accident Insurance."
-    },
-    {
-        icon: Calendar,
-        title: "Time Off",
-        desc: "Yearly holidays, paid vacations, and 10 days of Paid Parental Leave."
-    },
-    {
-        icon: GraduationCap,
-        title: "Development",
-        desc: "Free learning accounts and higher education partnerships with leading universities."
-    },
-    {
-        icon: Users,
-        title: "Engagement",
-        desc: "Competitive sporting activities, company lunches, and regular team-building."
-    }
-];
 
-const processSteps = [
-    { num: "01", title: "Application", desc: "Submit your CV and cover letter via our website or email." },
-    { num: "02", title: "Talent Screen", desc: "Initial conversation about skills, experience, and expectations." },
-    { num: "03", title: "Technical Assessment", desc: "Tasks or tests specific to the role you applied for." },
-    { num: "04", title: "Delivery Interview", desc: "A deeper discussion with the team you would be working with." },
-    { num: "05", title: "Leadership Interview", desc: "Final meeting to discuss career progression and cultural alignment." }
-];
 
 const roles = [
     { domain: "Development", list: "Flutter, Node.js, Angular, Python, Full Stack Engineer" },
@@ -113,43 +84,7 @@ export default function CareerPage() {
                     </div>
                 </section>
 
-                {/* Benefits */}
-                <section className="mb-32">
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-16">
-                        <h2 className="text-3xl font-light mb-12 text-center">Employee Benefits</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            {benefits.map((benefit, i) => (
-                                <div key={i} className="flex gap-6">
-                                    <div className="w-12 h-12 shrink-0 bg-white/10 rounded-xl flex items-center justify-center">
-                                        <benefit.icon className="w-6 h-6 text-white/80" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-medium mb-2">{benefit.title}</h3>
-                                        <p className="text-white/50 font-light leading-relaxed">{benefit.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
 
-                {/* Process */}
-                <section className="mb-32">
-                    <h2 className="text-3xl font-light mb-12 text-center">Hiring Process</h2>
-                    <div className="max-w-4xl mx-auto">
-                        {processSteps.map((step, i) => (
-                            <div key={i} className="flex gap-6 md:gap-12 mb-8 last:mb-0 group cursor-default">
-                                <div className="text-4xl md:text-5xl font-light text-white/20 group-hover:text-white transition-colors duration-500">
-                                    {step.num}
-                                </div>
-                                <div className="pt-2 md:pt-4">
-                                    <h3 className="text-xl font-medium mb-2">{step.title}</h3>
-                                    <p className="text-white/50 font-light leading-relaxed">{step.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
 
                 {/* Openings */}
                 <section className="mb-32">

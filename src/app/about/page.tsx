@@ -176,42 +176,13 @@ const AboutPage = () => {
                     className="mb-32"
                 >
                     <h2 className="text-4xl md:text-6xl font-light mb-16 text-center">Our Leadership</h2>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        {/* Pavan */}
+                    <div className="flex flex-col gap-12 max-w-4xl mx-auto">
+                        {/* Naresh — Founder (Top Position) */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1, duration: 0.5 }}
-                            whileHover={{ y: -8 }}
-                            className="group glass-card overflow-hidden border border-white/5 hover:border-violet-400/20 transition-all duration-300 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]"
-                        >
-                            <div className="p-8 md:p-12">
-                                <div className="flex flex-col md:flex-row gap-8 items-start">
-                                    <div className="w-full md:w-1/3 aspect-[3/4] bg-transparent rounded-xl overflow-hidden relative">
-                                        <img
-                                            src="/images/Pavan.png"
-                                            alt="Pavan Kumar Kodedela"
-                                            className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
-                                        />
-                                    </div>
-                                    <div className="md:w-2/3">
-                                        <h3 className="text-3xl font-normal mb-1 text-white">Pavan Kumar Kodedela</h3>
-                                        <p className="text-sm uppercase tracking-widest text-violet-300/80 mb-6">Founder & CEO</p>
-                                        <p className="text-white/60 leading-relaxed font-light text-sm md:text-base">
-                                            With 20+ years of experience working in and mentoring start-ups, Pavan Kumar has accumulated a plethora of technology management experience while building multiple innovative and out-of-the-box software products for clients across the globe. Currently, with a vision to develop and implement intelligent software products rapidly, Pavan acts as Founder, CEO, and one of the members of the Board of Directors.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Naresh */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
                             whileHover={{ y: -8 }}
                             className="group glass-card overflow-hidden border border-white/5 hover:border-amber-400/20 transition-all duration-300 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]"
                         >
@@ -226,9 +197,38 @@ const AboutPage = () => {
                                     </div>
                                     <div className="md:w-2/3">
                                         <h3 className="text-3xl font-normal mb-1 text-white">Naresh Velaga</h3>
-                                        <p className="text-sm uppercase tracking-widest text-amber-300/80 mb-6">Co-Founder</p>
+                                        <p className="text-sm uppercase tracking-widest text-amber-300/80 mb-6">Founder</p>
                                         <p className="text-white/60 leading-relaxed font-light text-sm md:text-base">
-                                            Naresh Velaga is a serial entrepreneur with 10+ years of experience in the IT solutions and service industry. Having core strength in developing and implementing Customer-Centric On-Demand Technology Solutions & Services, currently, Naresh acts as Co-Founder of RapinnoTech Solutions Private Limited which deals in providing faster and smarter software solutions to businesses all over the globe.
+                                            Naresh Velaga is a serial entrepreneur with 10+ years of experience in the IT solutions and service industry. Having core strength in developing and implementing Customer-Centric On-Demand Technology Solutions &amp; Services, currently, Naresh acts as the Founder of RapinnoTech Solutions Private Limited which deals in providing faster and smarter software solutions to businesses all over the globe.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Pavan — CEO */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2, duration: 0.5 }}
+                            whileHover={{ y: -8 }}
+                            className="group glass-card overflow-hidden border border-white/5 hover:border-violet-400/20 transition-all duration-300 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]"
+                        >
+                            <div className="p-8 md:p-12">
+                                <div className="flex flex-col md:flex-row gap-8 items-start">
+                                    <div className="w-full md:w-1/3 aspect-[3/4] bg-transparent rounded-xl overflow-hidden relative">
+                                        <img
+                                            src="/images/Pavan.png"
+                                            alt="Pavan Kumar Kodedela"
+                                            className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div className="md:w-2/3">
+                                        <h3 className="text-3xl font-normal mb-1 text-white">Pavan Kumar Kodedela</h3>
+                                        <p className="text-sm uppercase tracking-widest text-violet-300/80 mb-6">CEO</p>
+                                        <p className="text-white/60 leading-relaxed font-light text-sm md:text-base">
+                                            With 20+ years of experience working in and mentoring start-ups, Pavan Kumar has accumulated a plethora of technology management experience while building multiple innovative and out-of-the-box software products for clients across the globe. Currently, with a vision to develop and implement intelligent software products rapidly, Pavan acts as CEO and one of the members of the Board of Directors.
                                         </p>
                                     </div>
                                 </div>

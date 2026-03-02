@@ -6,6 +6,8 @@ import Manifesto from "@/components/sections/manifesto";
 import Strengths from "@/components/sections/strengths";
 import SaigonSouls from "@/components/sections/saigon-souls";
 import Testimonials from "@/components/sections/testimonials";
+import Counters from "@/components/sections/counters";
+import GlobalPresenceMap from "@/components/sections/global-presence";
 
 export default function Home() {
   return (
@@ -17,8 +19,10 @@ export default function Home() {
         <Partners />
         <Manifesto />
         <Strengths />
-        <SaigonSouls />
         <Testimonials />
+        <GlobalPresenceMap />
+        <Counters />
+        <SaigonSouls />
       </div>
     </>
   );

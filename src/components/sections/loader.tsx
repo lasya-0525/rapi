@@ -1,39 +1,22 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 /**
- * Loader component for RapinnoTech.
- * Features:
- * - Full-screen overlay with 'RapinnoTech' transition.
- * - Centered branding reveal.
- * - Premium tech background image transition phase.
+ * Modern tech-inspired loader for RapinnoTech.
+ * Features a circuit-board pattern animation with a pulsing core.
+ * Uses brand colors: Blue #054FB8 and Red #F32913.
  */
 export default function Loader() {
   const [isVisible, setIsVisible] = useState(true);
-  const [step, setStep] = useState(0); // 0: greeting, 1: branding + bg, 2: fade out
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Stage 1: Display greeting
-    const timer1 = setTimeout(() => {
-      setStep(1);
-    }, 2000);
-
-    // Stage 2: Fade out
-    const timer2 = setTimeout(() => {
-      setStep(2);
-    }, 3500);
-
-    // Stage 3: Remove loader from DOM
-    const timer3 = setTimeout(() => {
-      setIsVisible(false);
-    }, 4500);
-
+    const timer1 = setTimeout(() => setFadeOut(true), 2200);
+    const timer2 = setTimeout(() => setIsVisible(false), 3200);
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
-      clearTimeout(timer3);
     };
   }, []);
 
@@ -41,53 +24,75 @@ export default function Loader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100000] flex items-center justify-center transition-all duration-1000 ease-in-out bg-black ${step === 2 ? "opacity-0 pointer-events-none" : "opacity-100"
+      className={`fixed inset-0 z-[100000] flex items-center justify-center bg-black transition-opacity duration-1000 ${fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       id="loader"
     >
-      {/* Step 0: Animated Greeting */}
-      <div
-        className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${step === 0 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10 pointer-events-none"
-          }`}
-      >
-        <div className="flex flex-col items-center text-white text-[8.5vw] md:text-[6vw] font-normal leading-[0.9] tracking-[-0.02em]">
-          <span className="flex items-baseline">
-            Rapinno
-          </span>
-          <span className="flex items-baseline">
-            Tech
-          </span>
-        </div>
+      {/* Animated circuit grid background */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#054FB8" strokeWidth="0.5" opacity="0.4" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
       </div>
 
-      {/* Step 1: Branding and High-end Background Reveal */}
-      <div
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out ${step === 1 ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-      >
-        {/* The premium tech background image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-            alt="Loading background"
-            fill
-            priority
-            className="object-cover opacity-30"
-          />
-        </div>
-
-        {/* Centered Branding (Logo replaced with clean typography) */}
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="text-white text-3xl md:text-4xl font-normal tracking-tight flex items-baseline">
-            RapinnoTech
+      {/* Core loader */}
+      <div className="relative flex flex-col items-center gap-8">
+        {/* Animated hex/circuit spinner */}
+        <div className="relative w-20 h-20">
+          {/* Outer ring */}
+          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: "3s" }} viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="35" fill="none" stroke="#054FB8" strokeWidth="1.5" strokeDasharray="40 20" opacity="0.6" />
+          </svg>
+          {/* Middle ring - counter rotate */}
+          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: "2s", animationDirection: "reverse" }} viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="25" fill="none" stroke="#F32913" strokeWidth="1" strokeDasharray="15 10" opacity="0.5" />
+          </svg>
+          {/* Inner pulsing core */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#054FB8] to-[#F32913] animate-pulse shadow-[0_0_20px_rgba(5,79,184,0.5)]" />
           </div>
-          <span className="block mt-4 text-center text-[10px] uppercase tracking-[0.3em] font-medium text-white/60">
-            Rapid Technology Innovations
+          {/* Corner dots */}
+          {[0, 90, 180, 270].map((deg) => (
+            <div
+              key={deg}
+              className="absolute w-1.5 h-1.5 rounded-full bg-[#054FB8]/60"
+              style={{
+                top: `${50 + 45 * Math.sin((deg * Math.PI) / 180)}%`,
+                left: `${50 + 45 * Math.cos((deg * Math.PI) / 180)}%`,
+                transform: "translate(-50%, -50%)",
+                animation: `pulse 1.5s ease-in-out ${deg / 360}s infinite`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Branding */}
+        <div className="flex flex-col items-center">
+          <span className="text-xl md:text-2xl font-normal tracking-tight text-white">
+            Rapinno<span className="text-[#054FB8]">Tech</span>
           </span>
+          {/* Loading bar */}
+          <div className="mt-4 w-32 h-[2px] bg-white/10 rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-[#054FB8] to-[#F32913] rounded-full animate-loading-bar" />
+          </div>
         </div>
       </div>
 
-
+      <style jsx>{`
+        @keyframes loading-bar {
+          0% { width: 0%; }
+          50% { width: 70%; }
+          100% { width: 100%; }
+        }
+        .animate-loading-bar {
+          animation: loading-bar 2s ease-in-out forwards;
+        }
+      `}</style>
     </div>
   );
 }

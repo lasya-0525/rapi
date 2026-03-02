@@ -6,36 +6,68 @@ import { motion, AnimatePresence } from 'framer-motion';
 const services = [
   {
     category: "Application Engineering",
-    href: "/services",
-    items: ["Rapid Software Dev", "Product Innovation", "Full Stack Dev", "Quality Engineering", "Innovation Consulting"]
+    items: [
+      { label: "Rapid Software Dev", slug: "rapid-software-development" },
+      { label: "Product Innovation", slug: "innovative-product-development" },
+      { label: "Full Stack Dev", slug: "full-stack-development" },
+      { label: "Quality Engineering", slug: "quality-engineering" },
+      { label: "Innovation Consulting", slug: "tech-innovation-consulting" }
+    ]
   },
   {
     category: "NextGen Tech (AI)",
-    href: "/services",
-    items: ["Intelligent Automation", "RPA Solutions", "Blockchain", "Cloud Services", "IoT Infrastructure"]
+    items: [
+      { label: "Intelligent Automation", slug: "intelligent-automation-ia" },
+      { label: "RPA Solutions", slug: "robotic-process-automation-rpa" },
+      { label: "Blockchain", slug: "blockchain" },
+      { label: "Cloud Services", slug: "cloud-services" },
+      { label: "IoT Infrastructure", slug: "internet-of-things" }
+    ]
   },
   {
     category: "Business Engineering",
-    href: "/services",
-    items: ["Enterprise ERP", "HCM Tech", "Big Data Analytics", "Data Digitization", "BPM Lifecycle"]
+    items: [
+      { label: "Enterprise ERP", slug: "enterprise-resource-planning-erp" },
+      { label: "HCM Tech", slug: "human-capital-management-hcm" },
+      { label: "Big Data Analytics", slug: "big-data-analytics" },
+      { label: "Data Digitization", slug: "data-digitization" },
+      { label: "BPM Lifecycle", slug: "business-process-management" }
+    ]
   },
   {
     category: "Security Services",
-    href: "/services",
-    items: ["Risk Management", "VAPT Testing", "IAM (MFA/SSO)", "Managed SOC", "Firewall Security"]
+    items: [
+      { label: "Risk Management", slug: "security-management" },
+      { label: "VAPT Testing", slug: "vapt-vulnerability-penetration-testing" },
+      { label: "IAM (MFA/SSO)", slug: "identity-management" },
+      { label: "Managed SOC", slug: "managed-soc-security-operations-center" },
+      { label: "Firewall Security", slug: "network-firewall" }
+    ]
   }
 ];
 
 const solutions = [
   {
-    category: "Industrial Platforms",
-    href: "/solutions",
-    items: ["Rapinno Digital Platform", "Rapinno Product 360", "Rapinno IA Ecosystem", "Rapinno Managed Services"]
+    category: "Digital Platforms (RDP)",
+    items: [
+      { label: "RDP Ecommerce", slug: "rdp-ecommerce" },
+      { label: "RDP Service Booking", slug: "rdp-service-booking" },
+      { label: "RDP Social Platform", slug: "rdp-social-platform" },
+      { label: "RDP Fleet Management", slug: "rdp-fleet-management" },
+      { label: "RDP DMS", slug: "rdp-dms-document-management-system" },
+      { label: "RDP Customer Service", slug: "rdp-customer-service" }
+    ]
   },
   {
-    category: "Business Systems",
-    href: "/solutions",
-    items: ["Rapinno Marketing 360", "Rapinno Data Digitization", "Rapinno Adaptive Sourcing", "RapiCon APS"]
+    category: "Intelligent IA & Biz",
+    items: [
+      { label: "IA Object Detection", slug: "object-detection" },
+      { label: "IA Image Analytics", slug: "image-classification" },
+      { label: "IA Text & Sentiment", slug: "text-sentiment-analysis" },
+      { label: "IA Chatbot Solutions", slug: "chatbot-solutions" },
+      { label: "Marketing 360 CRM", slug: "crm-tool" },
+      { label: "Sales as a Service", slug: "sales-as-a-service" }
+    ]
   }
 ];
 
@@ -96,7 +128,7 @@ const Header = () => {
                     <a href="/services" className="flex items-center gap-2">
                       services
                     </a>
-                    <span className={`w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${hoveredMenu === 'services' ? 'opacity-100' : 'opacity-0'}`} />
+                    <span className={`w-1 h-1 rounded-full bg-[#054FB8] transition-opacity duration-300 ${hoveredMenu === 'services' ? 'opacity-100' : 'opacity-0'}`} />
                   </div>
 
                   {/* Services Mega Menu */}
@@ -112,13 +144,13 @@ const Header = () => {
                         <div className="glass-dropdown p-8 min-w-[65vw] grid grid-cols-4 gap-8 translate-y-[-1px]">
                           {services.map((cat) => (
                             <div key={cat.category} className="flex flex-col space-y-4">
-                              <h4 className="text-[11px] font-semibold text-white tracking-[0.2em] border-b border-white/10 pb-2">
+                              <h4 className="text-[11px] font-semibold text-white tracking-[0.2em] border-b border-[#054FB8]/30 pb-2">
                                 {cat.category}
                               </h4>
                               <ul className="flex flex-col space-y-3">
                                 {cat.items.map((item) => (
-                                  <li key={item} className="text-[10px] lowercase text-[#777] hover:text-white transition-colors">
-                                    <a href={cat.href}>{item}</a>
+                                  <li key={item.slug} className="text-[10px] lowercase text-[#777] hover:text-white transition-colors">
+                                    <a href={`/services/${item.slug}`} onClick={closeMobile}>{item.label}</a>
                                   </li>
                                 ))}
                               </ul>
@@ -140,7 +172,7 @@ const Header = () => {
                     <a href="/solutions" className="flex items-center gap-2">
                       solutions
                     </a>
-                    <span className={`w-1 h-1 rounded-full bg-white transition-opacity duration-300 ${hoveredMenu === 'solutions' ? 'opacity-100' : 'opacity-0'}`} />
+                    <span className={`w-1 h-1 rounded-full bg-[#054FB8] transition-opacity duration-300 ${hoveredMenu === 'solutions' ? 'opacity-100' : 'opacity-0'}`} />
                   </div>
 
                   {/* Solutions Mega Menu */}
@@ -161,8 +193,8 @@ const Header = () => {
                               </h4>
                               <ul className="flex flex-col space-y-4">
                                 {cat.items.map((item) => (
-                                  <li key={item} className="text-[11px] font-medium text-[#888] hover:text-white transition-colors">
-                                    <a href={cat.href}>{item}</a>
+                                  <li key={item.slug} className="text-[11px] font-medium text-[#888] hover:text-white transition-colors">
+                                    <a href={`/solutions/${item.slug}`} onClick={closeMobile}>{item.label}</a>
                                   </li>
                                 ))}
                               </ul>
@@ -334,13 +366,13 @@ const Header = () => {
                               <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mb-2">{cat.category}</p>
                               <ul className="space-y-2">
                                 {cat.items.map((item) => (
-                                  <li key={item}>
+                                  <li key={item.slug}>
                                     <a
-                                      href={cat.href}
+                                      href={`/services/${item.slug}`}
                                       onClick={closeMobile}
                                       className="text-[11px] text-white/50 hover:text-white transition-colors"
                                     >
-                                      {item}
+                                      {item.label}
                                     </a>
                                   </li>
                                 ))}
@@ -388,13 +420,13 @@ const Header = () => {
                               <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mb-2">{cat.category}</p>
                               <ul className="space-y-2">
                                 {cat.items.map((item) => (
-                                  <li key={item}>
+                                  <li key={item.slug}>
                                     <a
-                                      href={cat.href}
+                                      href={`/solutions/${item.slug}`}
                                       onClick={closeMobile}
                                       className="text-[11px] text-white/50 hover:text-white transition-colors"
                                     >
-                                      {item}
+                                      {item.label}
                                     </a>
                                   </li>
                                 ))}

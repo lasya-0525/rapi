@@ -5,96 +5,108 @@ import Image from 'next/image';
 
 /**
  * Partners Component
- * Displays trusted clients and technology partners.
+ * Displays trusted clients and technology partners in an infinite logo carousel.
+ * Removed the grey ball backdrop as per user request.
+ * Uses high-quality logos for each company.
  */
 
-const brands = [
-  "HDFC",
-  "Bajaj",
-  "Automation Anywhere",
-  "UiPath",
-  "Keka",
-  "Toyota",
-  "Deloitte",
-  "Microsoft",
-  "AWS",
-  "Google Cloud",
-  "SAP",
-  "Oracle",
-  "Salesforce",
-  "ServiceNow",
-  "Blue Prism",
+const partners = [
+  { name: "HDFC Bank", domain: "hdfcbank.com" },
+  { name: "Bajaj Auto", domain: "bajajauto.com" },
+  { name: "Automation Anywhere", domain: "automationanywhere.com" },
+  { name: "UiPath", domain: "uipath.com" },
+  { name: "Keka", domain: "keka.com" },
+  { name: "Toyota", domain: "toyota.com" },
+  { name: "Deloitte", domain: "deloitte.com" },
+  { name: "Microsoft", domain: "microsoft.com" },
+  { name: "AWS", domain: "amazon.com" },
+  { name: "Google Cloud", domain: "google.com" },
+  { name: "SAP", domain: "sap.com" },
+  { name: "Oracle", domain: "oracle.com" },
+  { name: "Salesforce", domain: "salesforce.com" },
+  { name: "ServiceNow", domain: "servicenow.com" },
+  { name: "Blue Prism", domain: "blueprism.com" },
 ];
+
+// Duplicate for infinite scroll
+const duplicatedPartners = [...partners, ...partners];
 
 const Partners = () => {
   return (
     <section
       id="partners"
-      className="relative min-h-[60vh] flex flex-col items-center justify-center overflow-hidden py-16 md:py-24"
+      className="relative min-h-[40vh] flex flex-col items-center justify-center overflow-hidden py-24 bg-black"
     >
-      {/* Background Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-full opacity-60 md:opacity-100">
-          <img
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
-            alt="Decorative background"
-            className="w-full h-full object-cover object-left opacity-10"
-            style={{ mixBlendMode: 'screen' }}
-          />
-        </div>
-      </div>
-
       <div className="container relative z-10 flex flex-col items-center text-center">
         {/* Section Title */}
         <span
-          className="text-section-title text-[#999999] mb-12 tracking-widest"
-          style={{ fontSize: '12px', fontWeight: 500, textTransform: 'uppercase' }}
+          className="text-[12px] font-medium uppercase tracking-[0.3em] text-white/40 mb-16 block"
         >
           They trust us
         </span>
 
-        {/* Brand Cloud */}
-        <div
-          className="brands flex flex-wrap justify-center gap-x-8 gap-y-6 md:gap-x-12 md:gap-y-10 max-w-5xl px-4"
-        >
-          {brands.map((brand) => (
-            <span
-              key={brand}
-              className="word text-white text-2xl md:text-3xl lg:text-4xl font-light opacity-80 hover:opacity-100 transition-opacity cursor-default"
-              style={{ fontFamily: 'var(--font-sans)', letterSpacing: '-0.01em' }}
-            >
-              {brand}
-            </span>
-          ))}
+        {/* Infinite Logo Carousel */}
+        <div className="relative w-screen overflow-hidden py-10">
+          <div className="flex whitespace-nowrap animate-infinite-scroll">
+            {duplicatedPartners.map((partner, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center px-10 md:px-16 lg:px-20 min-w-[150px] md:min-w-[200px]"
+              >
+                <div className="relative h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 group">
+                  <img
+                    src={`https://logo.clearbit.com/${partner.domain}`}
+                    alt={`${partner.name} logo`}
+                    className="w-full h-full object-contain filter grayscale invert brightness-200 opacity-40 group-hover:opacity-100 group-hover:grayscale-0 group-hover:invert-0 group-hover:brightness-100 transition-all duration-500 ease-in-out cursor-default"
+                    onError={(e) => {
+                      // Fallback to text if logo fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const nextSibling = target.nextSibling as HTMLElement;
+                      if (nextSibling) nextSibling.style.display = 'block';
+                    }}
+                  />
+                  <span className="hidden text-white text-xl md:text-2xl font-light opacity-60 hover:opacity-100 uppercase tracking-tighter">
+                    {partner.name}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Lateral Fades for smooth transitions */}
+          <div className="absolute inset-y-0 left-0 w-32 md:w-64 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 md:w-64 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         </div>
 
-        {/* Link Button */}
-        <div className="mt-20 md:mt-24">
+        {/* Explorer Link */}
+        <div className="mt-20">
           <a
-            href="https://rapinnotech.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button--link inline-block px-8 py-3 rounded-full border border-white/20 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium hover:bg-white hover:text-black transition-all duration-500 ease-in-out"
+            href="/services"
+            className="group relative inline-flex items-center gap-4 px-10 py-4 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-white/30"
           >
-            Explore RapinnoTech
+            <div className="absolute inset-0 bg-[#054FB8] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+            <span className="relative z-10 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium text-white/80 group-hover:text-white transition-colors duration-500">
+              Explore RapinnoTech
+            </span>
           </a>
         </div>
       </div>
 
-      <style jsx>{`
-        .brands {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
+      <style jsx global>{`
+        @keyframes infinite-scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
         }
-        .word {
-          white-space: nowrap;
+        .animate-infinite-scroll {
+          animation: infinite-scroll 40s linear infinite;
         }
-        @media (max-width: 768px) {
-           .word {
-             font-size: 1.5rem;
-           }
+        .animate-infinite-scroll:hover {
+          animation-play-state: paused;
         }
       `}</style>
     </section>
