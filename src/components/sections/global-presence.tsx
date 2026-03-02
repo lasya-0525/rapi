@@ -32,28 +32,13 @@ export default function GlobalPresenceMap() {
                 </p>
             </div>
             <WorldMap
-                lineColor="#054FB8"
-                dots={[
-                    {
-                        start: { lat: 33.6846, lng: -117.8265 },  // Irvine, California (USA HQ)
-                        end: { lat: 17.385, lng: 78.4867 },        // Hyderabad, India (Delivery Center)
-                    },
-                    {
-                        start: { lat: 17.385, lng: 78.4867 },      // Hyderabad, India
-                        end: { lat: 50.1109, lng: 8.6821 },         // Frankfurt, Germany (EU Office)
-                    },
-                    {
-                        start: { lat: 50.1109, lng: 8.6821 },       // Frankfurt, Germany
-                        end: { lat: 33.6846, lng: -117.8265 },      // Back to California
-                    },
-                    {
-                        start: { lat: 17.385, lng: 78.4867 },       // Hyderabad, India
-                        end: { lat: 25.2048, lng: 55.2708 },         // Dubai, UAE
-                    },
-                    {
-                        start: { lat: 25.2048, lng: 55.2708 },       // Dubai, UAE
-                        end: { lat: 50.1109, lng: 8.6821 },          // Frankfurt, Germany
-                    },
+                dotColor="#054FB8"
+                locations={[
+                    { lat: 37.0902, lng: -95.7129, label: "USA", labelPosition: "bottom" },
+                    { lat: 53.3811, lng: -1.4701, label: "UK", labelPosition: "top" },
+                    { lat: 51.1657, lng: 10.4515, label: "GERMANY", labelPosition: "right" },
+                    { lat: 20.5937, lng: 78.9629, label: "INDIA", labelPosition: "bottom" },
+                    { lat: -25.2744, lng: 133.7751, label: "AUSTRALIA", labelPosition: "bottom" },
                 ]}
             />
         </section>

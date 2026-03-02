@@ -151,7 +151,7 @@ const Header = () => {
                               </h4>
                               <ul className="flex flex-col space-y-3">
                                 {cat.items.map((item) => (
-                                  <li key={item.slug} className="text-[10px] lowercase text-[#777] hover:text-white transition-colors">
+                                  <li key={item.slug} className="text-[11px] uppercase font-medium text-[#888] hover:text-white transition-colors">
                                     <a href={`/services/${item.slug}`} onClick={closeMobile}>{item.label}</a>
                                   </li>
                                 ))}
