@@ -103,17 +103,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative w-full pt-20 pb-10">
-      {/* Background radial highlight */}
-      <div
-        className="absolute right-0 top-0 w-full h-full pointer-events-none z-0 opacity-10 mix-blend-screen"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'right center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      />
+    <footer id="contact" className="relative w-full pt-20 pb-10 bg-black">
 
       <div className="container relative z-10 mx-auto px-5 lg:px-10">
 

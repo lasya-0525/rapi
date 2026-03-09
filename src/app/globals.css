@@ -211,7 +211,7 @@
 
 @layer utilities {
   .text-hero {
-    font-size: 8.5vw;
+    font-size: 6vw;
     line-height: 0.9;
     font-weight: 400;
     letter-spacing: -0.02em;

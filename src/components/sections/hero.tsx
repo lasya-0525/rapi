@@ -46,7 +46,6 @@ const slides = [
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef(0);
 
@@ -67,12 +66,11 @@ export default function HeroSection() {
 
   // Auto-advance
   useEffect(() => {
-    if (isPaused) return;
     timerRef.current = setInterval(goNext, 5000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [goNext, isPaused]);
+  }, [goNext]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -101,8 +99,6 @@ export default function HeroSection() {
   return (
     <section
       className="relative w-screen h-screen overflow-hidden flex items-center justify-center -mt-[120px] lg:-mt-[100px]"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       aria-label="Hero carousel"
@@ -253,7 +249,7 @@ export default function HeroSection() {
             >
               <span
                 className={`block rounded-full transition-all duration-500 ${i === currentIndex
-                  ? 'w-8 h-2 bg-white/80'
+                  ? 'w-8 h-2 bg-[#F32913]/80'
                   : 'w-2 h-2 bg-white/20 group-hover:bg-white/50'
                   }`}
               />
@@ -264,12 +260,12 @@ export default function HeroSection() {
         {/* Progress bar for active slide */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-40 h-[1px] bg-white/10 rounded-full overflow-hidden">
           <div
-            className="h-full bg-white/40 rounded-full transition-none"
+            className="h-full bg-[#F32913]/70 rounded-full transition-none"
             style={{
-              animation: isPaused ? 'none' : 'hero-progress 5s linear infinite',
+              animation: 'hero-progress 5s linear infinite',
               animationDelay: '0ms',
             }}
-            key={`progress-${currentIndex}-${isPaused}`}
+            key={`progress-${currentIndex}`}
           />
         </div>
 
@@ -287,7 +283,7 @@ export default function HeroSection() {
       {/* ============ LOCAL STYLES ============ */}
       <style jsx global>{`
         .text-hero {
-          font-size: 8.5vw;
+          font-size: 6vw;
           line-height: 0.9;
           font-weight: 400;
           letter-spacing: -0.04em;
@@ -296,7 +292,7 @@ export default function HeroSection() {
 
         @media (max-width: 768px) {
           .text-hero {
-            font-size: 14vw;
+            font-size: 10vw;
             line-height: 1.1;
           }
         }

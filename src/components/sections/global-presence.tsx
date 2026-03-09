@@ -6,12 +6,24 @@ import { motion } from "framer-motion";
 
 export default function GlobalPresenceMap() {
     return (
-        <section className="py-24 bg-black w-full">
-            <div className="max-w-7xl mx-auto text-center px-5 lg:px-10">
-                <p className="font-bold text-xl md:text-4xl text-white">
-                    Global{" "}
-                    <span className="text-neutral-400">
-                        {"Presence".split("").map((letter, idx) => (
+        <section className="py-24 bg-black w-full relative">
+            <WorldMap
+                dotColor="#F97316"
+                locations={[
+                    { lat: 36.7783, lng: -119.4179, label: "California", labelPosition: "top" },
+                    { lat: 43.6532, lng: -79.3832, label: "Toronto", labelPosition: "top" },
+                    { lat: 51.1657, lng: 10.4515, label: "Germany", labelPosition: "top" },
+                    { lat: 17.3850, lng: 78.4867, label: "Hyderabad", labelPosition: "left" },
+                    { lat: 12.9716, lng: 77.5946, label: "Bengaluru", labelPosition: "bottom" },
+                    { lat: -33.8688, lng: 151.2093, label: "Sydney", labelPosition: "top" },
+                ]}
+            />
+
+            <div className="max-w-7xl mx-auto text-center px-5 lg:px-10 mt-12 pb-10">
+                <p className="font-bold font-display tracking-tight text-3xl md:text-5xl text-brand-blue">
+                    We Are Here To{" "}
+                    <span className="text-brand-red">
+                        {"Help You".split("").map((letter, idx) => (
                             <motion.span
                                 key={idx}
                                 className="inline-block"
@@ -20,27 +32,19 @@ export default function GlobalPresenceMap() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.04 }}
                             >
-                                {letter}
+                                {letter === " " ? "\u00A0" : letter}
                             </motion.span>
                         ))}
                     </span>
                 </p>
-                <p className="text-sm md:text-lg text-neutral-500 max-w-2xl mx-auto py-4">
-                    Strategically positioned across four continents to deliver innovation
-                    at every timezone. From California to Hyderabad, we operate where our
-                    clients need us most.
-                </p>
+                <div className="absolute right-10 bottom-10">
+                    <button className="bg-white text-black p-3 rounded-md hover:opacity-80 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <WorldMap
-                dotColor="#054FB8"
-                locations={[
-                    { lat: 37.0902, lng: -95.7129, label: "USA", labelPosition: "bottom" },
-                    { lat: 53.3811, lng: -1.4701, label: "UK", labelPosition: "top" },
-                    { lat: 51.1657, lng: 10.4515, label: "GERMANY", labelPosition: "right" },
-                    { lat: 20.5937, lng: 78.9629, label: "INDIA", labelPosition: "bottom" },
-                    { lat: -25.2744, lng: 133.7751, label: "AUSTRALIA", labelPosition: "bottom" },
-                ]}
-            />
         </section>
     );
 }

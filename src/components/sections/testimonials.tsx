@@ -44,8 +44,8 @@ export default function Testimonials() {
                 <span className="text-[12px] font-medium uppercase tracking-[0.3em] text-[#999] block mb-4">
                     What They Say
                 </span>
-                <h2 className="text-[12vw] md:text-[8vw] font-normal leading-none tracking-tighter lowercase text-white">
-                    testimonials
+                <h2 className="text-[12vw] md:text-[8vw] font-normal leading-none tracking-tighter text-white">
+                    Testimonials
                 </h2>
             </div>
             <AnimatedTestimonials testimonials={testimonials} autoplay={true} />

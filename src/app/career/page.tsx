@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe2, BookOpen, Smile, Users, ArrowUpRight } from 'lucide-react';
+import { Globe2, BookOpen, Smile, ArrowUpRight } from 'lucide-react';
 
 const philosophies = [
     {
@@ -108,11 +108,17 @@ export default function CareerPage() {
                             e.preventDefault();
                             const form = e.target as HTMLFormElement;
                             const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+                            const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+                            const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
                             const role = (form.elements.namedItem('role') as HTMLInputElement).value;
                             const experience = (form.elements.namedItem('experience') as HTMLInputElement).value;
+                            const fileInput = form.elements.namedItem('resume') as HTMLInputElement;
+                            const resumeName = fileInput.files?.[0]?.name || 'Not attached';
 
                             const subject = encodeURIComponent(`Career Application: ${role} - ${name}`);
-                            const body = encodeURIComponent(`Name: ${name}\nRole applying for: ${role}\nExperience: ${experience} years\n\n(Please attach your resume before sending this email.)`);
+                            const body = encodeURIComponent(
+                                `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nRole applying for: ${role}\nExperience: ${experience} years\nResume file: ${resumeName}\n\n(Please attach your resume file before sending this email.)`
+                            );
 
                             window.location.href = `mailto:info.india@rapinnotech.com,info.usa@rapinnotech.com?subject=${subject}&body=${body}`;
                         }}
@@ -123,12 +129,33 @@ export default function CareerPage() {
                             <input required name="name" type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="John Doe" />
                         </div>
                         <div className="space-y-2">
+                            <label className="text-sm uppercase tracking-widest text-white/40">Email ID</label>
+                            <input required name="email" type="email" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="john@example.com" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm uppercase tracking-widest text-white/40">Phone Number</label>
+                            <input required name="phone" type="tel" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="+1 234 567 8900" />
+                        </div>
+                        <div className="space-y-2">
                             <label className="text-sm uppercase tracking-widest text-white/40">Role You're Applying For</label>
                             <input required name="role" type="text" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="e.g. Flutter Developer" />
                         </div>
                         <div className="space-y-2">
                             <label className="text-sm uppercase tracking-widest text-white/40">Years of Experience</label>
                             <input required name="experience" type="number" min="0" step="0.5" className="w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="e.g. 3" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm uppercase tracking-widest text-white/40">Resume / CV</label>
+                            <label className="flex items-center gap-4 w-full border border-dashed border-white/20 hover:border-white/40 rounded-lg px-5 py-4 cursor-pointer transition-colors group">
+                                <div className="w-9 h-9 rounded-full bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition-colors flex-shrink-0">
+                                    <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-white/70 transition-colors" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">Click to attach your resume</p>
+                                    <p className="text-xs text-white/30 mt-0.5">PDF, DOC, DOCX — max 10 MB</p>
+                                </div>
+                                <input name="resume" type="file" accept=".pdf,.doc,.docx" className="hidden" />
+                            </label>
                         </div>
                         <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-6">
                             <button type="submit" className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white text-black px-8 py-4 rounded-full hover:bg-white/80 transition-colors font-medium">
