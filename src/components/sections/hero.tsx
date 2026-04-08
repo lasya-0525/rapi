@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 /**
  * Hero component for RapinnoTech.
@@ -12,356 +12,258 @@ import { ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
  * - Rotating "Scroll Down" indicator
  */
 
-const slides = [
-  {
-    first: "Intelligent",
-    second: "Automation",
-    subtitle: "Streamline operations with AI-driven process automation",
-    accent: "from-violet-500/30 via-indigo-500/20 to-blue-500/10",
-    glow: "bg-violet-500/20",
-  },
-  {
-    first: "Rapid",
-    second: "Innovations",
-    subtitle: "Accelerate time-to-market with cutting-edge technology",
-    accent: "from-amber-500/30 via-orange-500/20 to-yellow-500/10",
-    glow: "bg-amber-500/20",
-  },
-  {
-    first: "Enterprise",
-    second: "Development",
-    subtitle: "Scalable solutions engineered for global impact",
-    accent: "from-emerald-500/30 via-teal-500/20 to-cyan-500/10",
-    glow: "bg-emerald-500/20",
-  },
-  {
-    first: "Digital",
-    second: "Transformation",
-    subtitle: "Reimagine your business for the digital era",
-    accent: "from-rose-500/30 via-pink-500/20 to-fuchsia-500/10",
-    glow: "bg-rose-500/20",
-  },
-];
+// Static hero (no carousel); keep the animated cinematic background.
 
 export default function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const touchStartX = useRef(0);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const goToSlide = useCallback((index: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 800);
-  }, [isTransitioning]);
-
-  const goNext = useCallback(() => {
-    goToSlide((currentIndex + 1) % slides.length);
-  }, [currentIndex, goToSlide]);
-
-  const goPrev = useCallback(() => {
-    goToSlide((currentIndex - 1 + slides.length) % slides.length);
-  }, [currentIndex, goToSlide]);
-
-  // Auto-advance
   useEffect(() => {
-    timerRef.current = setInterval(goNext, 5000);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let rafId: number | null = null;
+    let width = 0;
+    let height = 0;
+    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+
+    const PARTICLE_COUNT = 80;
+    const CONNECTION_DISTANCE = 180;
+    const MOUSE_DISTANCE = 200;
+
+    const palettes = [
+      {
+        particle: 'rgba(5,79,184,0.45)', // blue
+        line: 'rgba(5,79,184,0.18)',
+      },
+      {
+        particle: 'rgba(243,41,19,0.35)', // red
+        line: 'rgba(243,41,19,0.18)',
+      },
+    ] as const;
+
+    type PaletteIndex = 0 | 1;
+
+    type Particle = {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      paletteIndex: PaletteIndex;
+    };
+
+    let particles: Particle[] = [];
+    const mouse = { x: null as number | null, y: null as number | null };
+
+    const setup = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      const nextW = Math.max(1, width);
+      const nextH = Math.max(1, height);
+      canvas.width = nextW * dpr;
+      canvas.height = nextH * dpr;
+      canvas.style.width = `${nextW}px`;
+      canvas.style.height = `${nextH}px`;
+
+      // Reset transform so we can draw in CSS pixels.
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      particles = Array.from({ length: PARTICLE_COUNT }).map(() => {
+        const paletteIndex: PaletteIndex = (Math.random() > 0.5 ? 1 : 0) as PaletteIndex;
+        return {
+          x: Math.random() * nextW,
+          y: Math.random() * nextH,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          radius: Math.random() * 2 + 1,
+          paletteIndex,
+        };
+      });
+    };
+
+    const drawParticle = (p: Particle) => {
+      const palette = palettes[p.paletteIndex];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = palette.particle;
+      ctx.fill();
+    };
+
+    const drawLines = () => {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < CONNECTION_DISTANCE) {
+            const opacity = 1 - distance / CONNECTION_DISTANCE;
+            const palette = palettes[particles[i].paletteIndex];
+            ctx.globalAlpha = opacity * 0.9;
+            ctx.strokeStyle = palette.line;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = particles[i].x - mouse.x;
+          const dy = particles[i].y - mouse.y;
+          const mouseDistance = Math.sqrt(dx * dx + dy * dy);
+
+          if (mouseDistance < MOUSE_DISTANCE) {
+            const mouseOpacity = 1 - mouseDistance / MOUSE_DISTANCE;
+            const palette = palettes[particles[i].paletteIndex];
+            ctx.globalAlpha = mouseOpacity;
+            ctx.strokeStyle = palette.line;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        drawParticle(p);
+      });
+
+      drawLines();
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    const onResize = () => setup();
+    const onMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    const onMouseOut = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
+    setup();
+    rafId = window.requestAnimationFrame(animate);
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseout', onMouseOut);
+
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseout', onMouseOut);
+      if (rafId) window.cancelAnimationFrame(rafId);
     };
-  }, [goNext]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') goPrev();
-      if (e.key === 'ArrowRight') goNext();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goNext, goPrev]);
-
-  // Touch/swipe support
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 60) {
-      if (diff > 0) goNext();
-      else goPrev();
-    }
-  };
-
-  const currentSlide = slides[currentIndex];
+  }, []);
 
   return (
     <section
-      className="relative w-screen h-screen overflow-hidden flex items-center justify-center -mt-[120px] lg:-mt-[100px]"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      aria-label="Hero carousel"
+      className="relative w-screen min-h-screen overflow-hidden flex items-center justify-center -mt-[120px] lg:-mt-[100px]"
+      aria-label="Hero"
     >
-      {/* ============ BACKGROUND LAYERS ============ */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none">
-        {/* Base dark gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black" />
-
-        {/* Animated gradient mesh — slides with content */}
-        {slides.map((slide, i) => (
-          <div
-            key={i}
-            className={`absolute inset-0 transition-opacity duration-[1500ms] ease-in-out ${i === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-          >
-            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vmax] h-[140vmax] rounded-full bg-gradient-radial ${slide.accent} blur-[100px] animate-hero-pulse`} />
-          </div>
-        ))}
-
-        {/* Floating light streaks */}
-        <div className="absolute top-0 left-[20%] w-px h-[60%] bg-gradient-to-b from-transparent via-white/[0.04] to-transparent animate-hero-streak-1" />
-        <div className="absolute top-[10%] left-[50%] w-px h-[50%] bg-gradient-to-b from-transparent via-white/[0.03] to-transparent animate-hero-streak-2" />
-        <div className="absolute top-[5%] left-[75%] w-px h-[55%] bg-gradient-to-b from-transparent via-white/[0.05] to-transparent animate-hero-streak-3" />
-
-        {/* Grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '100px 100px',
-          }}
-        />
-
-        {/* Animated orbs */}
-        <div className={`absolute top-[15%] right-[15%] w-[300px] h-[300px] rounded-full blur-[120px] transition-all duration-[2000ms] ${currentSlide.glow} opacity-40`} />
-        <div className={`absolute bottom-[20%] left-[10%] w-[250px] h-[250px] rounded-full blur-[100px] transition-all duration-[2000ms] ${currentSlide.glow} opacity-30`} />
-
-        {/* Signature Lens Backdrop — Restored as requested */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] h-[85vw] max-w-[1100px] max-h-[1100px] flex items-center justify-center opacity-60">
-          <div className="relative w-full h-full rounded-full overflow-hidden border border-white/5 shadow-[0_0_150px_rgba(92,92,66,0.2)]">
-            <div
-              className="absolute inset-0 bg-cover bg-center mix-blend-screen opacity-50"
-              style={{
-                backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')`,
-                filter: 'contrast(120%)'
-              }}
-            />
-            {/* Inner signature gradient sphere effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#5c5c42]/25 via-[#1a1a1a]/40 to-black rounded-full" />
-          </div>
-        </div>
-
-        {/* Floating particles */}
-        <div className="hero-particles">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={i}
-              className="hero-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 8}s`,
-                animationDuration: `${6 + Math.random() * 8}s`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      <canvas
+        ref={canvasRef}
+        id="bg-canvas"
+        className="absolute inset-0 z-0 pointer-events-none"
+      />
 
       {/* ============ HERO CONTENT ============ */}
-      <div className="container relative z-10 w-full px-5 lg:px-10 h-full flex flex-col justify-center items-center">
-        {/* Slide counter */}
-        <div className="absolute top-[calc(50%-12vh)] left-5 lg:left-10 text-[10px] uppercase tracking-[0.3em] text-white/30 font-medium">
-          <span className="text-white/80">{String(currentIndex + 1).padStart(2, '0')}</span>
-          <span className="mx-1">/</span>
-          <span>{String(slides.length).padStart(2, '0')}</span>
-        </div>
-
-        {/* Cycling Typography */}
-        <div className="w-full text-center">
-          <ul className="relative h-[30vh] flex items-center justify-center">
-            {slides.map((slide, index) => (
-              <li
-                key={index}
-                className={`absolute w-full transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col items-center justify-center gap-6
-                  ${index === currentIndex
-                    ? 'opacity-100 translate-y-0 blur-0 scale-100'
-                    : index < currentIndex
-                      ? 'opacity-0 -translate-y-[40px] blur-[12px] scale-[0.97] pointer-events-none'
-                      : 'opacity-0 translate-y-[40px] blur-[12px] scale-[0.97] pointer-events-none'
-                  }`}
-                aria-hidden={index !== currentIndex}
-              >
-                {/* Main heading */}
-                <div className="text-hero text-white flex flex-col md:flex-row gap-x-6 items-center">
-                  <span className="whitespace-nowrap inline-block font-light">
-                    {slide.first}
-                  </span>
-                  <span className="whitespace-nowrap inline-block bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-                    {slide.second}
-                  </span>
-                </div>
-
-                {/* Subtitle */}
-                <p className="text-sm md:text-base lg:text-lg font-light text-white/40 tracking-wide max-w-xl leading-relaxed">
-                  {slide.subtitle}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* ============ CAROUSEL NAVIGATION ============ */}
-
-        {/* Prev / Next Arrows */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-4 lg:left-8 z-20">
-          <button
-            onClick={goPrev}
-            className="group w-12 h-12 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md flex items-center justify-center hover:border-white/30 hover:bg-white/[0.08] transition-all duration-300 cursor-pointer"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-5 h-5 text-white/50 group-hover:text-white transition-colors" />
-          </button>
-        </div>
-        <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:right-8 z-20">
-          <button
-            onClick={goNext}
-            className="group w-12 h-12 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md flex items-center justify-center hover:border-white/30 hover:bg-white/[0.08] transition-all duration-300 cursor-pointer"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-5 h-5 text-white/50 group-hover:text-white transition-colors" />
-          </button>
-        </div>
-
-        {/* Dot Indicators */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goToSlide(i)}
-              className="group relative flex items-center justify-center p-1 cursor-pointer"
-              aria-label={`Go to slide ${i + 1}`}
-              aria-current={i === currentIndex ? 'true' : 'false'}
-            >
-              <span
-                className={`block rounded-full transition-all duration-500 ${i === currentIndex
-                  ? 'w-8 h-2 bg-[#F32913]/80'
-                  : 'w-2 h-2 bg-white/20 group-hover:bg-white/50'
-                  }`}
-              />
-            </button>
-          ))}
-        </div>
-
-        {/* Progress bar for active slide */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-40 h-[1px] bg-white/10 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[#F32913]/70 rounded-full transition-none"
-            style={{
-              animation: 'hero-progress 5s linear infinite',
-              animationDelay: '0ms',
-            }}
-            key={`progress-${currentIndex}`}
-          />
-        </div>
-
-        {/* Scroll Down indicator — Bottom Left */}
-        <div className="absolute bottom-10 left-5 lg:left-10 z-20 flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}>
-          <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
-            <ArrowDown className="w-4 h-4 text-white/40 group-hover:text-white/80 transition-colors animate-bounce" />
-          </div>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-hover:text-white/60 transition-colors hidden md:block">
-            Scroll Down
+      <div className="container relative z-10 w-full px-5 lg:px-10 h-full flex flex-col justify-center items-center text-center pb-16">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-[#054FB8]/35 backdrop-blur-sm mb-7">
+          <svg className="w-3 h-3 text-[#054FB8]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 11-2 0 1 1 0 012 0zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.536 14.95a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM16.464 16.464a1 1 0 101.414-1.414l-.707-.707a1 1 0 10-1.414 1.414l.707.707z" />
+          </svg>
+          <span className="inline-block text-[10px] uppercase tracking-[0.3em] text-[#054FB8]/90 font-semibold">
+            Technology Innovators with Business Sense
           </span>
+        </div>
+
+        <h1 className="mt-1 text-[clamp(2.4rem,5.2vw,4.9rem)] leading-[1.0] font-light text-white">
+          <span className="block text-white/90">
+            Transforming Ideas into
+          </span>
+          <span className="block bg-gradient-to-r from-[#F32913] via-[#054FB8] to-[#4A9FF5] bg-clip-text text-transparent">
+            Powerful Solutions
+          </span>
+        </h1>
+
+        <p className="mt-5 max-w-2xl text-base md:text-lg font-light text-white/40 tracking-wide leading-relaxed">
+          A decade-old technology consulting & staffing company helping enterprises and SMEs design, build, and scale their software.
+        </p>
+
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
+          <a
+            href="/contact"
+            className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-full bg-[#054FB8] text-white text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-semibold overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(5,79,184,0.45)]"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-[#054FB8] to-[#F32913] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <span className="relative z-10">Contact Us</span>
+            <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+
+          <a
+            href="/services"
+            className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-full border border-[#054FB8]/40 text-[#054FB8]/90 text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-medium overflow-hidden transition-all duration-500 hover:bg-[#054FB8]/10 hover:border-[#054FB8]/60"
+          >
+            <div className="absolute inset-0 bg-[#054FB8]/[0.06] group-hover:bg-[#054FB8]/[0.12] transition-colors duration-500" />
+            <span className="relative z-10">Explore Services</span>
+          </a>
+        </div>
+
+        <div className="mt-14 w-full max-w-3xl">
+          <div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-10">
+            <div className="text-center">
+              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-white/95 leading-none">
+                10<span className="text-[#F32913]/90">+</span>
+              </div>
+              <div className="mt-2 text-sm md:text-base font-light text-white/40 tracking-wide">
+                Years Experience
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-white/95 leading-none">
+                200<span className="text-[#054FB8]/90">+</span>
+              </div>
+              <div className="mt-2 text-sm md:text-base font-light text-white/40 tracking-wide">
+                Clients Served
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-white/95 leading-none">
+                50<span className="text-[#F32913]/90">+</span>
+              </div>
+              <div className="mt-2 text-sm md:text-base font-light text-white/40 tracking-wide">
+                Enterprise Partners
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* ============ LOCAL STYLES ============ */}
-      <style jsx global>{`
-        .text-hero {
-          font-size: 6vw;
-          line-height: 0.9;
-          font-weight: 400;
-          letter-spacing: -0.04em;
-          text-transform: none;
-        }
-
-        @media (max-width: 768px) {
-          .text-hero {
-            font-size: 10vw;
-            line-height: 1.1;
-          }
-        }
-
-        /* Background gradient animation */
-        @keyframes hero-pulse {
-          0%, 100% {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 0.6;
-          }
-          50% {
-            transform: translate(-50%, -50%) scale(1.15);
-            opacity: 0.8;
-          }
-        }
-        .animate-hero-pulse {
-          animation: hero-pulse 8s ease-in-out infinite;
-        }
-
-        /* Light streak animations */
-        @keyframes hero-streak-1 {
-          0%, 100% { opacity: 0; transform: translateY(-20%); }
-          50% { opacity: 1; transform: translateY(10%); }
-        }
-        @keyframes hero-streak-2 {
-          0%, 100% { opacity: 0; transform: translateY(-10%); }
-          60% { opacity: 1; transform: translateY(15%); }
-        }
-        @keyframes hero-streak-3 {
-          0%, 100% { opacity: 0; transform: translateY(-30%); }
-          40% { opacity: 1; transform: translateY(5%); }
-        }
-        .animate-hero-streak-1 { animation: hero-streak-1 12s ease-in-out infinite; }
-        .animate-hero-streak-2 { animation: hero-streak-2 15s ease-in-out infinite 2s; }
-        .animate-hero-streak-3 { animation: hero-streak-3 10s ease-in-out infinite 4s; }
-
-        /* Floating particles */
-        .hero-particles {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-        }
-        .hero-particle {
-          position: absolute;
-          width: 2px;
-          height: 2px;
-          background: rgba(255, 255, 255, 0.15);
-          border-radius: 50%;
-          animation: hero-float ease-in-out infinite;
-        }
-        @keyframes hero-float {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px);
-            opacity: 0;
-          }
-          10% { opacity: 0.6; }
-          90% { opacity: 0.6; }
-          50% {
-            transform: translateY(-80px) translateX(20px);
-            opacity: 1;
-          }
-        }
-
-        /* Progress bar animation */
-        @keyframes hero-progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-      `}</style>
+      {/* Note: background is rendered via canvas in JS. */}
     </section>
   );
 }
