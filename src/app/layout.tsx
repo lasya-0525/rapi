@@ -5,7 +5,6 @@ import Header from "@/components/sections/header";
 import Footer from "@/components/sections/footer";
 import Cursor from "@/components/ui/cursor";
 import CookieBanner from "@/components/ui/cookie-banner";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const SITE_URL = "https://rapinnotech.com";
 const SITE_NAME = "RapinnoTech Solutions";
@@ -170,7 +169,6 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased text-foreground bg-transparent overflow-x-hidden">
-        <AuroraBackground />
         <Cursor />
         <Header />
         <main className="relative z-10 w-full content-page">{children}</main>
