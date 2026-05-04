@@ -13,16 +13,16 @@ function formatContent(content: string) {
     if (!trimmed) return null;
     if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
       return (
-        <h3 key={i} className="text-lg font-semibold text-white mt-8 mb-3 first:mt-0">
+        <h3 key={i} className="text-lg font-bold text-[#0f172a] mt-8 mb-3 first:mt-0">
           {trimmed.slice(2, -2)}
         </h3>
       );
     }
     return (
-      <p key={i} className="text-white/70 font-light leading-[1.75] mb-5">
+      <p key={i} className="text-[#334155] font-light leading-[1.75] mb-5">
         {trimmed.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
           part.startsWith("**") && part.endsWith("**") ? (
-            <strong key={j} className="font-medium text-white/90">
+            <strong key={j} className="font-semibold text-[#0f172a]">
               {part.slice(2, -2)}
             </strong>
           ) : (
@@ -44,9 +44,9 @@ export default function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <main className="relative min-h-screen bg-black text-white selection:bg-white/20 overflow-x-hidden">
+    <main className="relative min-h-screen bg-transparent text-[#0f172a] selection:bg-[#054FB8]/20 overflow-x-hidden">
       <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-32 pb-24">
-        {/* Back link – Notion-style */}
+        {/* Back link */}
         <motion.div
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
@@ -55,7 +55,7 @@ export default function BlogPostPage({
         >
           <Link
             href="/resources"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-[#64748b] hover:text-[#0f172a] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Resources
@@ -70,13 +70,13 @@ export default function BlogPostPage({
             transition={{ delay: 0.05, duration: 0.4 }}
             className="mb-12"
           >
-            <span className="inline-block px-2.5 py-1 rounded-md bg-white/10 text-white/80 text-xs font-medium uppercase tracking-wider border border-white/10 mb-6">
+            <span className="inline-block px-2.5 py-1 rounded-md bg-[#054FB8]/10 text-[#054FB8] text-xs font-semibold uppercase tracking-wider border border-[#054FB8]/20 mb-6">
               {post.category}
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-[2.5rem] font-normal leading-[1.2] tracking-tight text-white mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-[2.5rem] font-extrabold leading-[1.2] tracking-tight text-[#0f172a] mb-6">
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-white/50">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-[#64748b]">
               <span className="inline-flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 {post.date}
@@ -89,7 +89,7 @@ export default function BlogPostPage({
             </div>
           </motion.header>
 
-          {/* Body – Notion doc style */}
+          {/* Body */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,11 +105,11 @@ export default function BlogPostPage({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="max-w-2xl mx-auto mt-20 pt-12 border-t border-white/10"
+          className="max-w-2xl mx-auto mt-20 pt-12 border-t border-[#0f172a]/10"
         >
           <Link
             href="/resources"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-[#475569] hover:text-[#0f172a] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             All posts

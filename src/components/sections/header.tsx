@@ -117,12 +117,12 @@ const Header = () => {
             {/* Desktop Navigation Anchors */}
             <nav className="hidden lg:flex items-center h-full">
               <ul className="flex items-center gap-10 relative">
-                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors flex items-center h-[70px]">
                   <a href="/">home</a>
                 </li>
                 {/* Services Navigation */}
                 <li
-                  className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors cursor-pointer group flex items-center h-[70px]"
+                  className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors cursor-pointer group flex items-center h-[70px]"
                   onMouseEnter={() => setHoveredMenu('services')}
                   onMouseLeave={() => setHoveredMenu(null)}
                 >
@@ -146,12 +146,12 @@ const Header = () => {
                         <div className="glass-dropdown p-8 min-w-[65vw] grid grid-cols-4 gap-8 translate-y-[-1px]">
                           {services.map((cat) => (
                             <div key={cat.category} className="flex flex-col space-y-4">
-                              <h4 className="text-[11px] font-semibold text-white tracking-[0.2em] border-b border-[#054FB8]/30 pb-2">
+                              <h4 className="text-[11px] font-semibold text-[#0f172a] tracking-[0.2em] border-b border-[#054FB8]/30 pb-2">
                                 {cat.category}
                               </h4>
                               <ul className="flex flex-col space-y-3">
                                 {cat.items.map((item) => (
-                                  <li key={item.slug} className="text-[11px] uppercase font-medium text-[#888] hover:text-white transition-colors">
+                                  <li key={item.slug} className="text-[11px] uppercase font-medium text-[#64748b] hover:text-[#0f172a] transition-colors">
                                     <a href={`/services/${item.slug}`} onClick={closeMobile}>{item.label}</a>
                                   </li>
                                 ))}
@@ -166,7 +166,7 @@ const Header = () => {
 
                 {/* Solutions Navigation */}
                 <li
-                  className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors cursor-pointer group flex items-center h-[70px]"
+                  className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors cursor-pointer group flex items-center h-[70px]"
                   onMouseEnter={() => setHoveredMenu('solutions')}
                   onMouseLeave={() => setHoveredMenu(null)}
                 >
@@ -190,12 +190,12 @@ const Header = () => {
                         <div className="glass-dropdown p-8 min-w-[50vw] grid grid-cols-2 gap-12 translate-y-[-1px]">
                           {solutions.map((cat) => (
                             <div key={cat.category} className="flex flex-col space-y-5">
-                              <h4 className="text-[11px] font-bold text-white tracking-[0.2em] border-b border-white/10 pb-3 uppercase">
+                              <h4 className="text-[11px] font-bold text-[#0f172a] tracking-[0.2em] border-b border-[#0f172a]/10 pb-3 uppercase">
                                 {cat.category}
                               </h4>
                               <ul className="flex flex-col space-y-4">
                                 {cat.items.map((item) => (
-                                  <li key={item.slug} className="text-[11px] font-medium text-[#888] hover:text-white transition-colors">
+                                  <li key={item.slug} className="text-[11px] font-medium text-[#64748b] hover:text-[#0f172a] transition-colors">
                                     <a href={`/solutions/${item.slug}`} onClick={closeMobile}>{item.label}</a>
                                   </li>
                                 ))}
@@ -208,16 +208,16 @@ const Header = () => {
                   </AnimatePresence>
                 </li>
 
-                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors flex items-center h-[70px]">
                   <a href="/about">about</a>
                 </li>
-                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors flex items-center h-[70px]">
                   <a href="/resources">resources</a>
                 </li>
-                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors flex items-center h-[70px]">
                   <a href="/career">careers</a>
                 </li>
-                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#999999] hover:text-white transition-colors flex items-center h-[70px]">
+                <li className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#475569] hover:text-[#0f172a] transition-colors flex items-center h-[70px]">
                   <a href="/contact">contact</a>
                 </li>
               </ul>
@@ -233,7 +233,7 @@ const Header = () => {
               <motion.span
                 animate={mobileOpen ? { rotate: 45, y: 6, width: '24px' } : { rotate: 0, y: 0, width: '24px' }}
                 transition={{ duration: 0.25 }}
-                className="block h-[1.5px] bg-white origin-center"
+                className="block h-[1.5px] bg-[#0f172a] origin-center"
                 style={{ width: 24 }}
               />
               <motion.span
@@ -245,7 +245,7 @@ const Header = () => {
               <motion.span
                 animate={mobileOpen ? { rotate: -45, y: -6, width: '24px' } : { rotate: 0, y: 0, width: '20px' }}
                 transition={{ duration: 0.25 }}
-                className="block h-[1.5px] bg-white origin-center"
+                className="block h-[1.5px] bg-[#0f172a] origin-center"
                 style={{ width: 20 }}
               />
             </button>
@@ -254,10 +254,10 @@ const Header = () => {
 
         <style jsx>{`
           .glass-dropdown {
-            background: rgba(10, 10, 10, 0.7);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(40px) saturate(1.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
             border-radius: 2px;
           }
         `}</style>
@@ -288,18 +288,18 @@ const Header = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="fixed top-0 right-0 h-full w-[80vw] max-w-sm z-[99] flex flex-col overflow-y-auto lg:hidden"
               style={{
-                background: 'rgba(8, 8, 8, 0.97)',
+                background: 'rgba(255, 255, 255, 0.97)',
                 backdropFilter: 'blur(40px) saturate(1.8)',
-                borderLeft: '1px solid rgba(255,255,255,0.07)',
+                borderLeft: '1px solid rgba(0,0,0,0.07)',
               }}
             >
               {/* Drawer Header */}
-              <div className="flex items-center justify-between px-8 h-[70px] border-b border-white/5">
-                <span className="text-white text-lg font-normal tracking-tight">Menu</span>
+              <div className="flex items-center justify-between px-8 h-[70px] border-b border-[#0f172a]/5">
+                <span className="text-[#0f172a] text-lg font-normal tracking-tight">Menu</span>
                 <button
                   onClick={closeMobile}
                   aria-label="Close menu"
-                  className="text-white/50 hover:text-white transition-colors p-2"
+                  className="text-[#475569] hover:text-[#0f172a] transition-colors p-2"
                 >
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M1 1L17 17M17 1L1 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -326,7 +326,7 @@ const Header = () => {
                     <a
                       href={link.href}
                       onClick={closeMobile}
-                      className="flex items-center py-4 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors border-b border-white/5"
+                      className="flex items-center py-4 text-[11px] uppercase tracking-[0.2em] text-[#475569] hover:text-[#0f172a] transition-colors border-b border-[#0f172a]/5"
                     >
                       {link.label}
                     </a>
@@ -338,17 +338,17 @@ const Header = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.25, duration: 0.3 }}
-                  className="border-b border-white/5"
+                  className="border-b border-[#0f172a]/5"
                 >
                   <button
-                    className="w-full flex items-center justify-between py-4 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors"
+                    className="w-full flex items-center justify-between py-4 text-[11px] uppercase tracking-[0.2em] text-[#475569] hover:text-[#0f172a] transition-colors"
                     onClick={() => setMobileExpanded(mobileExpanded === 'services' ? null : 'services')}
                   >
                     Services
                     <motion.span
                       animate={{ rotate: mobileExpanded === 'services' ? 45 : 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-white/30 text-xl leading-none"
+                      className="text-[#475569] text-xl leading-none"
                     >
                       +
                     </motion.span>
@@ -365,14 +365,14 @@ const Header = () => {
                         <div className="pb-4 space-y-5">
                           {services.map((cat) => (
                             <div key={cat.category}>
-                              <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mb-2">{cat.category}</p>
+                              <p className="text-[9px] uppercase tracking-[0.25em] text-[#64748b] mb-2">{cat.category}</p>
                               <ul className="space-y-2">
                                 {cat.items.map((item) => (
                                   <li key={item.slug}>
                                     <a
                                       href={`/services/${item.slug}`}
                                       onClick={closeMobile}
-                                      className="text-[11px] text-white/50 hover:text-white transition-colors"
+                                      className="text-[11px] text-[#475569] hover:text-[#0f172a] transition-colors"
                                     >
                                       {item.label}
                                     </a>
@@ -392,17 +392,17 @@ const Header = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
-                  className="border-b border-white/5"
+                  className="border-b border-[#0f172a]/5"
                 >
                   <button
-                    className="w-full flex items-center justify-between py-4 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors"
+                    className="w-full flex items-center justify-between py-4 text-[11px] uppercase tracking-[0.2em] text-[#475569] hover:text-[#0f172a] transition-colors"
                     onClick={() => setMobileExpanded(mobileExpanded === 'solutions' ? null : 'solutions')}
                   >
                     Solutions
                     <motion.span
                       animate={{ rotate: mobileExpanded === 'solutions' ? 45 : 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-white/30 text-xl leading-none"
+                      className="text-[#475569] text-xl leading-none"
                     >
                       +
                     </motion.span>
@@ -419,14 +419,14 @@ const Header = () => {
                         <div className="pb-4 space-y-5">
                           {solutions.map((cat) => (
                             <div key={cat.category}>
-                              <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mb-2">{cat.category}</p>
+                              <p className="text-[9px] uppercase tracking-[0.25em] text-[#64748b] mb-2">{cat.category}</p>
                               <ul className="space-y-2">
                                 {cat.items.map((item) => (
                                   <li key={item.slug}>
                                     <a
                                       href={`/solutions/${item.slug}`}
                                       onClick={closeMobile}
-                                      className="text-[11px] text-white/50 hover:text-white transition-colors"
+                                      className="text-[11px] text-[#475569] hover:text-[#0f172a] transition-colors"
                                     >
                                       {item.label}
                                     </a>
@@ -443,8 +443,8 @@ const Header = () => {
               </ul>
 
               {/* Footer inside drawer */}
-              <div className="mt-auto px-8 py-8 border-t border-white/5">
-                <p className="text-[9px] uppercase tracking-[0.3em] text-white/20">© 2026 RapinnoTech Solutions</p>
+              <div className="mt-auto px-8 py-8 border-t border-[#0f172a]/5">
+                <p className="text-[9px] uppercase tracking-[0.3em] text-[#94a3b8]">© 2026 RapinnoTech Solutions</p>
               </div>
             </motion.nav>
           </>

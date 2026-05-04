@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 
 export default function GlobalPresenceMap() {
     return (
-        <section className="py-24 bg-black w-full relative">
+        <section className="py-24 bg-transparent w-full relative px-5 lg:px-10">
+            <div className="max-w-7xl mx-auto rounded-2xl overflow-hidden glass-card border border-white/70 p-6 md:p-10">
             <WorldMap
                 dotColor="#F97316"
                 locations={[
@@ -19,8 +20,8 @@ export default function GlobalPresenceMap() {
                 ]}
             />
 
-            <div className="max-w-7xl mx-auto text-center px-5 lg:px-10 mt-12 pb-10">
-                <p className="font-bold font-display tracking-tight text-3xl md:text-5xl text-brand-blue">
+            <div className="max-w-7xl mx-auto text-center mt-8 pb-4">
+                <p className="font-extrabold font-display tracking-tight text-3xl md:text-5xl text-[#054FB8]">
                     We Are Here To{" "}
                     <span className="text-brand-red">
                         {"Help You".split("").map((letter, idx) => (
@@ -37,13 +38,7 @@ export default function GlobalPresenceMap() {
                         ))}
                     </span>
                 </p>
-                <div className="absolute right-10 bottom-10">
-                    <button className="bg-white text-black p-3 rounded-md hover:opacity-80 transition-opacity">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-                        </svg>
-                    </button>
-                </div>
+            </div>
             </div>
         </section>
     );

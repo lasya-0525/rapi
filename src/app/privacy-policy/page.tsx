@@ -9,9 +9,9 @@ const sections = [
         icon: Database,
         title: "Information We Collect",
         color: "violet",
-        gradient: "from-violet-500/20 to-violet-600/5",
+        gradient: "from-violet-500/10 to-violet-600/5",
         border: "group-hover:border-violet-400/30",
-        iconBg: "group-hover:bg-violet-500/20",
+        iconBg: "group-hover:bg-violet-500/15",
         content: [
             {
                 subtitle: "Personal Information",
@@ -31,9 +31,9 @@ const sections = [
         icon: Eye,
         title: "How We Use Your Information",
         color: "amber",
-        gradient: "from-amber-500/20 to-amber-600/5",
+        gradient: "from-amber-500/10 to-amber-600/5",
         border: "group-hover:border-amber-400/30",
-        iconBg: "group-hover:bg-amber-500/20",
+        iconBg: "group-hover:bg-amber-500/15",
         content: [
             {
                 subtitle: "Service Delivery",
@@ -53,9 +53,9 @@ const sections = [
         icon: Lock,
         title: "Data Security",
         color: "emerald",
-        gradient: "from-emerald-500/20 to-emerald-600/5",
+        gradient: "from-emerald-500/10 to-emerald-600/5",
         border: "group-hover:border-emerald-400/30",
-        iconBg: "group-hover:bg-emerald-500/20",
+        iconBg: "group-hover:bg-emerald-500/15",
         content: [
             {
                 subtitle: "Protection Measures",
@@ -71,9 +71,9 @@ const sections = [
         icon: Globe,
         title: "International Data Transfers",
         color: "sky",
-        gradient: "from-sky-500/20 to-sky-600/5",
+        gradient: "from-sky-500/10 to-sky-600/5",
         border: "group-hover:border-sky-400/30",
-        iconBg: "group-hover:bg-sky-500/20",
+        iconBg: "group-hover:bg-sky-500/15",
         content: [
             {
                 subtitle: "Global Operations",
@@ -89,9 +89,9 @@ const sections = [
         icon: Shield,
         title: "Your Rights",
         color: "rose",
-        gradient: "from-rose-500/20 to-rose-600/5",
+        gradient: "from-rose-500/10 to-rose-600/5",
         border: "group-hover:border-rose-400/30",
-        iconBg: "group-hover:bg-rose-500/20",
+        iconBg: "group-hover:bg-rose-500/15",
         content: [
             {
                 subtitle: "Access & Control",
@@ -130,12 +130,12 @@ const itemVariants = {
 
 const PrivacyPolicyPage = () => {
     return (
-        <main className="relative min-h-screen text-white selection:bg-white/20 overflow-x-hidden">
+        <main className="relative min-h-screen text-[#0f172a] selection:bg-[#054FB8]/20 overflow-x-hidden">
             {/* Subtle gradient orbs for depth */}
             <div className="pointer-events-none fixed inset-0 z-0">
                 <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full bg-violet-500/5 blur-[120px]" />
                 <div className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full bg-amber-500/5 blur-[100px]" />
-                <div className="absolute top-[60%] left-[50%] w-[250px] h-[250px] rounded-full bg-emerald-500/10 blur-[80px]" />
+                <div className="absolute top-[60%] left-[50%] w-[250px] h-[250px] rounded-full bg-emerald-500/5 blur-[80px]" />
             </div>
 
             <div className="relative z-10 container mx-auto px-5 lg:px-10 py-[15vh]">
@@ -147,12 +147,13 @@ const PrivacyPolicyPage = () => {
                     className="mb-24"
                 >
                     <motion.div variants={itemVariants} className="max-w-4xl">
-                        <h1 className="text-[12vw] lg:text-[8vw] font-normal leading-[0.9] tracking-tighter mb-8">
-                            Privacy Policy
+                        <h1 className="text-[12vw] lg:text-[8vw] font-extrabold leading-[0.9] tracking-tighter mb-8">
+                            <span className="text-[#054FB8]">Privacy</span>{" "}
+                            <span className="text-[#F32913]">Policy</span>
                         </h1>
                         <motion.p
                             variants={itemVariants}
-                            className="text-lg md:text-xl font-light leading-relaxed text-white/60 max-w-3xl"
+                            className="text-lg md:text-xl font-light leading-relaxed text-[#475569] max-w-3xl"
                         >
                             At RapinnoTech Solutions, we are committed to protecting
                             your privacy and ensuring the security of your personal
@@ -163,8 +164,8 @@ const PrivacyPolicyPage = () => {
                             variants={itemVariants}
                             className="flex items-center gap-3 mt-6"
                         >
-                            <div className="w-2 h-2 rounded-full bg-emerald-400/60" />
-                            <p className="text-sm font-light text-white/40 uppercase tracking-[0.15em]">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500/60" />
+                            <p className="text-sm font-light text-[#94a3b8] uppercase tracking-[0.15em]">
                                 Last updated: March 2026
                             </p>
                         </motion.div>
@@ -183,21 +184,21 @@ const PrivacyPolicyPage = () => {
                                 delay: sectionIdx * 0.08,
                                 duration: 0.6,
                             }}
-                            className={`group glass-card p-8 md:p-12 relative overflow-hidden border border-white/5 transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] ${section.border}`}
+                            className={`group glass-card p-8 md:p-12 relative overflow-hidden border border-[#0f172a]/10 transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] ${section.border}`}
                         >
                             <div
                                 className={`absolute inset-0 bg-gradient-to-br ${section.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                             />
-                            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#054FB8]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                             <div className="relative z-10">
                                 <div className="flex items-center gap-4 mb-8">
                                     <div
-                                        className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${section.iconBg}`}
+                                        className={`w-12 h-12 rounded-xl bg-[#0f172a]/5 flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${section.iconBg}`}
                                     >
-                                        <section.icon className="w-6 h-6 text-white/80 group-hover:text-white" />
+                                        <section.icon className="w-6 h-6 text-[#475569] group-hover:text-[#0f172a] transition-colors" />
                                     </div>
-                                    <h2 className="text-2xl md:text-3xl font-light text-white/90">
+                                    <h2 className="text-2xl md:text-3xl font-bold text-[#0f172a]">
                                         {section.title}
                                     </h2>
                                 </div>
@@ -205,10 +206,10 @@ const PrivacyPolicyPage = () => {
                                 <div className="space-y-8 pl-0 md:pl-16">
                                     {section.content.map((item, idx) => (
                                         <div key={idx}>
-                                            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/50 mb-3">
+                                            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-[#64748b] mb-3">
                                                 {item.subtitle}
                                             </h3>
-                                            <p className="text-white/70 font-light leading-relaxed text-base">
+                                            <p className="text-[#334155] font-light leading-relaxed text-base">
                                                 {item.text}
                                             </p>
                                         </div>
@@ -227,19 +228,19 @@ const PrivacyPolicyPage = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <div className="glass-card p-12 overflow-hidden relative border border-white/5 hover:border-white/10 transition-colors duration-300">
+                    <div className="glass-card p-12 overflow-hidden relative border border-[#0f172a]/10 hover:border-[#054FB8]/20 transition-colors duration-300">
                         <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-violet-500/5 to-transparent -rotate-12 translate-x-1/2 pointer-events-none" />
                         <div className="relative z-10 flex flex-col md:flex-row items-start gap-8">
                             <div className="flex-1">
-                                <h2 className="text-3xl md:text-4xl font-light mb-4">
-                                    Questions About Your Privacy?
+                                <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-[#0f172a]">
+                                    Questions About Your <span className="text-[#054FB8]">Privacy?</span>
                                 </h2>
-                                <p className="text-white/60 font-light leading-relaxed mb-6 max-w-xl">
+                                <p className="text-[#475569] font-light leading-relaxed mb-6 max-w-xl">
                                     If you have any questions or concerns about this
                                     privacy policy or our data practices, please don&apos;t
                                     hesitate to contact us.
                                 </p>
-                                <div className="flex items-center gap-3 text-white/50 hover:text-white/80 transition-colors">
+                                <div className="flex items-center gap-3 text-[#475569] hover:text-[#054FB8] transition-colors">
                                     <Mail className="w-5 h-5" />
                                     <a
                                         href="mailto:info.india@rapinnotech.com"
@@ -249,8 +250,8 @@ const PrivacyPolicyPage = () => {
                                     </a>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-4 text-sm text-white/40">
-                                <p className="uppercase tracking-[0.2em] font-medium">
+                            <div className="flex flex-col gap-4 text-sm text-[#64748b]">
+                                <p className="uppercase tracking-[0.2em] font-semibold text-[#0f172a]">
                                     Data Protection Officer
                                 </p>
                                 <p className="font-light leading-relaxed">
@@ -271,9 +272,11 @@ const PrivacyPolicyPage = () => {
 
             <style jsx>{`
                 .glass-card {
-                    background: rgba(255, 255, 255, 0.03);
-                    backdrop-filter: blur(20px);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    background: rgba(255, 255, 255, 0.65);
+                    backdrop-filter: blur(32px) saturate(180%);
+                    -webkit-backdrop-filter: blur(32px) saturate(180%);
+                    border: 1px solid rgba(255, 255, 255, 0.78);
+                    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.9);
                     border-radius: 4px;
                 }
             `}</style>

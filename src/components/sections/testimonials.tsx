@@ -41,11 +41,11 @@ export default function Testimonials() {
     return (
         <section id="testimonials" className="py-24 mt-48 z-10 relative bg-transparent">
             <div className="container mx-auto px-5 lg:px-10 mb-24">
-                <span className="text-[12px] font-medium uppercase tracking-[0.3em] text-[#999] block mb-4">
+                <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-[#054FB8] block mb-4">
                     What They Say
                 </span>
-                <h2 className="text-[12vw] md:text-[8vw] font-normal leading-none tracking-tighter text-white">
-                    Testimonials
+                <h2 className="text-[12vw] md:text-[8vw] font-extrabold leading-none tracking-tight">
+                    <span className="text-[#0f172a]">Testi</span><span className="text-[#F32913]">monials</span>
                 </h2>
             </div>
             <AnimatedTestimonials testimonials={testimonials} autoplay={true} />

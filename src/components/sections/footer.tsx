@@ -103,7 +103,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative w-full pt-20 pb-10 bg-black">
+    <footer id="contact" className="relative w-full pt-20 pb-10 bg-[#0f172a]">
 
       <div className="container relative z-10 mx-auto px-5 lg:px-10">
 

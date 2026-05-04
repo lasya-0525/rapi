@@ -75,12 +75,12 @@ export default function ResourcesSection() {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row mb-20 lg:mb-32">
           <div className="lg:w-1/2">
-            <h2 className="text-section-title text-white mb-6 lg:mb-0">
-              Resources & Insights
+            <h2 className="text-section-title font-extrabold mb-6 lg:mb-0">
+              <span className="text-[#054FB8]">Resources</span> <span className="text-[#F32913]">&</span> <span className="text-[#0f172a]">Insights</span>
             </h2>
           </div>
           <div className="lg:w-1/2">
-            <p className="text-[20px] lg:text-[24px] leading-[1.4] text-white font-light max-w-[580px]">
+            <p className="text-[20px] lg:text-[24px] leading-[1.4] text-[#475569] font-light max-w-[580px]">
               Stay updated with the latest trends in intelligent automation, digital transformation, and enterprise technology. Our experts share insights that help you make informed decisions for your business growth.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function ResourcesSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
           {blogCards.map((blog, index) => (
             <div key={index} className="group cursor-pointer">
-              <div className="relative overflow-hidden aspect-[16/10] mb-6 bg-[#1a1a1a]">
+              <div className="relative overflow-hidden aspect-[16/10] mb-6 bg-[#e2e8f0]">
                 <img
                   src={blog.image}
                   alt={blog.title}
@@ -98,12 +98,12 @@ export default function ResourcesSection() {
                 />
               </div>
               <div className="flex flex-col space-y-3">
-                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/40">
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-[#64748b]">
                   <span>{blog.author}</span>
-                  <span className="w-4 h-[1px] bg-white/20"></span>
+                  <span className="w-4 h-[1px] bg-[#0f172a]/20"></span>
                   <span>{blog.date}</span>
                 </div>
-                <h3 className="text-[18px] font-normal leading-snug text-white group-hover:opacity-70 transition-opacity">
+                <h3 className="text-[18px] font-normal leading-snug text-[#0f172a] group-hover:opacity-70 transition-opacity">
                   {blog.title}
                 </h3>
               </div>
@@ -130,25 +130,25 @@ export default function ResourcesSection() {
 
       {/* Call to action center */}
       <div className="relative mt-24 pb-32 z-20 text-center">
-        <div className="relative inline-block bg-black/40 backdrop-blur-sm px-10 py-12 rounded-3xl border border-white/5 shadow-2xl">
-          <p className="text-[13px] uppercase tracking-[0.4em] font-semibold text-white/90 mb-6 drop-shadow-sm">
+        <div className="relative inline-block bg-white/70 backdrop-blur-sm px-10 py-12 rounded-3xl border border-[#0f172a]/10 shadow-2xl">
+          <p className="text-[13px] uppercase tracking-[0.4em] font-semibold text-[#475569] mb-6 drop-shadow-sm">
             Innovation & Technology
           </p>
-          <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8 text-[6vw] md:text-[3.5vw] font-medium text-white drop-shadow-lg">
-            <span className="text-white/80">From Hyderabad</span>
-            <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent font-bold">To The World</span>
+          <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8 text-[6vw] md:text-[3.5vw] font-medium text-[#0f172a] drop-shadow-lg">
+            <span className="text-[#0f172a]/80">From Hyderabad</span>
+            <span className="bg-gradient-to-r from-[#054FB8] via-[#054FB8] to-[#054FB8]/70 bg-clip-text text-transparent font-bold">To The World</span>
           </div>
 
           {/* Countries Presence */}
-          <div className="mt-14 flex flex-wrap justify-center items-center gap-x-6 gap-y-4 text-[11px] md:text-[13px] uppercase tracking-[0.3em] font-bold text-white max-w-4xl mx-auto px-4 opacity-95">
+          <div className="mt-14 flex flex-wrap justify-center items-center gap-x-6 gap-y-4 text-[11px] md:text-[13px] uppercase tracking-[0.3em] font-bold text-[#0f172a] max-w-4xl mx-auto px-4 opacity-95">
             <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">USA</span>
-            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <div className="w-1.5 h-1.5 bg-[#054FB8] rounded-full hidden md:block" />
             <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">UK</span>
-            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <div className="w-1.5 h-1.5 bg-[#054FB8] rounded-full hidden md:block" />
             <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">GERMANY</span>
-            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default text-[#00ff96] drop-shadow-[0_0_12px_rgba(0,255,150,0.5)]">INDIA</span>
-            <div className="w-1.5 h-1.5 bg-white rounded-full hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <div className="w-1.5 h-1.5 bg-[#054FB8] rounded-full hidden md:block" />
+            <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default text-[#054FB8]">INDIA</span>
+            <div className="w-1.5 h-1.5 bg-[#054FB8] rounded-full hidden md:block" />
             <span className="whitespace-nowrap hover:scale-105 transition-transform cursor-default">AUSTRALIA</span>
           </div>
         </div>

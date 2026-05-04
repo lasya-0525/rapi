@@ -24,15 +24,15 @@ const Counter = ({ value, suffix = "", title, delay = 0 }: { value: number; suff
   }, [isInView, value, delay]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center p-8 glass-card border border-white/5 hover:border-white/20 transition-all duration-500 group relative overflow-hidden">
+    <div ref={ref} className="flex flex-col items-center justify-center p-8 glass-card border border-[#0f172a]/10 hover:border-[#054FB8]/30 transition-all duration-500 group relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#054FB8]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
       <div className="relative z-10 flex flex-col items-center">
-        <div className="text-4xl md:text-6xl font-normal text-white group-hover:text-[#054FB8] mb-2 tracking-tighter transition-colors duration-500">
+        <div className="text-4xl md:text-6xl font-extrabold text-[#054FB8] group-hover:text-[#F32913] mb-2 tracking-tight transition-colors duration-500">
           {displayValue}{suffix}
         </div>
-        <div className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-white/40 font-medium group-hover:text-white/60 transition-colors">
+        <div className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-[#475569] font-semibold group-hover:text-[#0f172a] transition-colors">
           {title}
         </div>
       </div>
@@ -50,10 +50,10 @@ export default function Counters() {
   ];
 
   return (
-    <section className="relative py-24 bg-black overflow-hidden">
+    <section className="relative py-24 bg-transparent overflow-hidden">
       {/* Subtle decorative elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#0f172a]/10 to-transparent" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#0f172a]/10 to-transparent" />
 
       <div className="container relative z-10 mx-auto px-5 lg:px-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -71,8 +71,11 @@ export default function Counters() {
 
       <style jsx>{`
         .glass-card {
-           background: rgba(255, 255, 255, 0.02);
-           backdrop-filter: blur(10px);
+           background: rgba(255, 255, 255, 0.6);
+           backdrop-filter: blur(32px) saturate(180%);
+           -webkit-backdrop-filter: blur(32px) saturate(180%);
+           border: 1px solid rgba(255, 255, 255, 0.75);
+           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);
            border-radius: 4px;
         }
       `}</style>

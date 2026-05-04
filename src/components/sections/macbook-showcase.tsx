@@ -5,7 +5,7 @@ import { MacbookScroll } from "@/components/ui/macbook-scroll";
 
 export default function MacbookShowcase() {
     return (
-        <div className="w-full overflow-hidden bg-[#0B0B0F]">
+        <div className="w-full overflow-hidden bg-[#e5e7eb]">
             <MacbookScroll
                 title={
                     <span>

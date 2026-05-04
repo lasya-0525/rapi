@@ -14,35 +14,35 @@ const services = [
   {
     title: "Full Stack Development",
     id: "fullstack",
-    thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
     categories: ["Web", "API"],
     size: "small" // col-span-1 row-span-1
   },
   {
     title: "Big Data Analytics",
     id: "bigdata",
-    thumbnail: "/images/works/big-data.png",
+    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
     categories: ["Management", "Real-time"],
     size: "small" // col-span-1 row-span-1
   },
   {
     title: "Digital Platform",
     id: "digital-platform",
-    thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop",
     categories: ["Low Code", "Rapid"],
     size: "medium" // col-span-1 row-span-2
   },
   {
     title: "Data Digitization",
     id: "data-digitization",
-    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop",
     categories: ["AI", "ML"],
     size: "wide" // col-span-2 row-span-1
   },
   {
     title: "Product 360",
     id: "product-360",
-    thumbnail: "/images/works/product-360.png",
+    thumbnail: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2670&auto=format&fit=crop",
     categories: ["Strategy", "Design"],
     size: "full" // col-span-3 row-span-1
   },
@@ -69,14 +69,15 @@ export default function Works() {
       <div className="container mx-auto px-5 lg:px-10">
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
-            <span className="text-[12px] font-medium uppercase tracking-[0.3em] text-[#999] block mb-4">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-[#054FB8] block mb-4">
               What We Do
             </span>
-            <h2 className="text-[12vw] md:text-[6vw] font-normal leading-[0.9] tracking-tighter lowercase">
-              our capabilities
+            <h2 className="text-[12vw] md:text-[6vw] font-extrabold leading-[0.9] tracking-tight lowercase">
+              <span className="text-[#0f172a]">our </span>
+              <span className="text-[#054FB8]">capa</span><span className="text-[#F32913]">bilities</span>
             </h2>
           </div>
-          <p className="text-[#666] text-sm max-w-xs leading-relaxed font-light">
+          <p className="text-[#475569] text-sm max-w-xs leading-relaxed font-light">
             We merge intelligent automation with elite engineering to solve complex business hurdles.
           </p>
         </div>
@@ -137,12 +138,17 @@ export default function Works() {
 
       <style jsx>{`
         .bento-card {
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          background: rgba(15, 15, 15, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.7);
+          background: rgba(255, 255, 255, 0.45);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
         }
         .glass-tag {
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(4px);
+          background: rgba(255, 255, 255, 0.6);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,0.7);
         }
       `}</style>
     </section>

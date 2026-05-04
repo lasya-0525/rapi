@@ -45,7 +45,7 @@ const ManifestoLine = ({ line, index }: { line: typeof manifestoLines[0], index:
           delay: index * 0.05,
           ease: [0.16, 1, 0.3, 1]
         }}
-        className={`inline-block ${line.accent ? 'bg-gradient-to-r from-white via-white/80 to-white/40 bg-clip-text text-transparent' : 'text-white'}`}
+        className={`inline-block font-bold ${line.accent ? 'bg-gradient-to-r from-[#F32913] via-[#054FB8] to-[#4A9FF5] bg-clip-text text-transparent' : 'text-[#0f172a]'}`}
       >
         {line.text}
       </motion.span>
@@ -92,17 +92,17 @@ export default function Manifesto() {
   return (
     <section
       id="manifesto"
-      className="relative min-h-[120vh] py-32 md:py-48 flex flex-col items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-[120vh] py-32 md:py-48 flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
       {/* Background signature element */}
       <BackgroundLens />
 
       {/* Section Title */}
       <div className="absolute top-16 left-5 md:left-10 z-20">
-        <span className="text-[10px] md:text-[12px] font-medium uppercase tracking-[0.4em] text-white/40 block mb-2">
+        <span className="text-[10px] md:text-[12px] font-medium uppercase tracking-[0.4em] text-[#64748b] block mb-2">
           02 — About Us
         </span>
-        <div className="w-12 h-px bg-white/20" />
+        <div className="w-12 h-px bg-[#0f172a]/20" />
       </div>
 
       <div className="container relative z-10 max-w-[90vw] flex flex-col items-center">
@@ -120,18 +120,18 @@ export default function Manifesto() {
           transition={{ duration: 1, delay: 0.8 }}
           className="mt-32 flex flex-col items-center space-y-12 w-full max-w-2xl px-4"
         >
-          <div className="h-20 w-px bg-gradient-to-b from-white/20 to-transparent" />
+          <div className="h-20 w-px bg-gradient-to-b from-[#0f172a]/20 to-transparent" />
 
-          <p className="text-center text-[18px] md:text-[22px] text-white/50 font-light leading-relaxed">
+          <p className="text-center text-[18px] md:text-[22px] text-[#64748b] font-light leading-relaxed">
             RapinnoTech Solutions is a software innovation company dedicated to delivering technological breakthroughs at a rapid pace.
           </p>
 
           <a
             href="/about"
-            className="group relative px-12 py-5 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-white/30"
+            className="group relative px-12 py-5 rounded-full border border-[#0f172a]/15 bg-[#0f172a]/[0.02] backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-[#0f172a]/30"
           >
-            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
-            <span className="relative z-10 text-[11px] uppercase tracking-[0.3em] font-medium text-white group-hover:text-black transition-colors duration-500">
+            <div className="absolute inset-0 bg-[#0f172a] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+            <span className="relative z-10 text-[11px] uppercase tracking-[0.3em] font-medium text-[#0f172a] group-hover:text-white transition-colors duration-500">
               Read Full Story
             </span>
           </a>

@@ -215,7 +215,7 @@ function OverlayCopy({ subheading, heading }: { subheading: string; heading: str
             <p className="mb-2 text-center text-xl font-light text-white/70 md:mb-4 md:text-3xl">
                 {subheading}
             </p>
-            <p className="text-center text-4xl font-normal tracking-tight md:text-7xl">{heading}</p>
+            <p className="text-center text-4xl font-bold tracking-tight md:text-7xl">{heading}</p>
         </motion.div>
     );
 }
@@ -224,16 +224,16 @@ function SolutionContent({ category }: { category: (typeof solutionsData)[0] }) 
     return (
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
             <div className="md:col-span-4">
-                <div className="text-white/40 mb-6">{category.icon}</div>
-                <h2 className="text-3xl font-normal tracking-tight text-white">
+                <div className="text-[#054FB8]/60 mb-6">{category.icon}</div>
+                <h2 className="text-3xl font-bold tracking-tight text-[#0f172a]">
                     {category.category}
                 </h2>
-                <p className="mt-4 text-lg font-light leading-relaxed text-white/60">
+                <p className="mt-4 text-lg font-light leading-relaxed text-[#475569]">
                     {category.description}
                 </p>
                 <Link
                     href="/contact"
-                    className="mt-8 inline-flex items-center gap-2 rounded bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
+                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#054FB8] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#054FB8]/90"
                 >
                     Learn more <ArrowUpRight className="h-4 w-4" />
                 </Link>
@@ -246,16 +246,16 @@ function SolutionContent({ category }: { category: (typeof solutionsData)[0] }) 
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.06 }}
-                            className="glass-card p-6 group hover:bg-white/5 transition-colors h-full"
+                            className="glass-card p-6 group hover:bg-[#054FB8]/5 transition-colors h-full border border-[#0f172a]/10 hover:border-[#054FB8]/20"
                         >
-                            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:text-white">
+                            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[#054FB8]/10 text-[#054FB8] group-hover:bg-[#054FB8]/20">
                                 {solution.icon}
                             </div>
-                            <h3 className="text-lg font-normal text-white mb-2">{solution.title}</h3>
-                            <p className="text-sm font-light leading-relaxed text-white/50 mb-4">
+                            <h3 className="text-lg font-semibold text-[#0f172a] mb-2">{solution.title}</h3>
+                            <p className="text-sm font-light leading-relaxed text-[#475569] mb-4">
                                 {solution.desc}
                             </p>
-                            <div className="mt-auto flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/40 group-hover:text-white transition-colors">
+                            <div className="mt-auto flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#64748b] group-hover:text-[#054FB8] transition-colors">
                                 <span>Explore Solution</span>
                                 <ArrowUpRight className="h-3 w-3" />
                             </div>
@@ -269,22 +269,22 @@ function SolutionContent({ category }: { category: (typeof solutionsData)[0] }) 
 
 export default function SolutionsPage() {
     return (
-        <main className="relative min-h-screen bg-transparent text-white selection:bg-white/20 overflow-x-hidden">
+        <main className="relative min-h-screen bg-transparent text-[#0f172a] selection:bg-[#054FB8]/20 overflow-x-hidden">
             <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-32 pb-8">
                 <div className="max-w-4xl mb-20">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-[12vw] lg:text-[8vw] font-normal leading-[0.9] tracking-tighter mb-12"
+                        className="text-[12vw] lg:text-[8vw] font-extrabold leading-[0.9] tracking-tighter mb-12"
                     >
-                        Solutions
+                        <span className="text-[#054FB8]">Solu</span><span className="text-[#F32913]">tions</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-xl md:text-2xl font-light text-white/50 leading-relaxed"
+                        className="text-xl md:text-2xl font-light text-[#475569] leading-relaxed"
                     >
                         A comprehensive suite of specialized platforms and frameworks designed to solve specific business hurdles with elite precision.
                     </motion.p>
@@ -303,12 +303,12 @@ export default function SolutionsPage() {
             ))}
 
             <div className="py-40 text-center pb-32">
-                <p className="text-[12px] uppercase tracking-[0.4em] text-white/40 mb-8">
+                <p className="text-[12px] uppercase tracking-[0.4em] text-[#64748b] mb-8">
                     Ready for a tailor-made solution?
                 </p>
                 <Link
                     href="/services"
-                    className="text-4xl md:text-6xl font-light text-white hover:opacity-70 transition-opacity"
+                    className="text-4xl md:text-6xl font-extrabold text-[#0f172a] hover:text-[#054FB8] transition-colors"
                 >
                     Explore Services
                 </Link>
@@ -316,12 +316,13 @@ export default function SolutionsPage() {
 
             <style jsx global>{`
                 .glass-card {
-                    background: rgba(255, 255, 255, 0.03);
-                    backdrop-filter: blur(20px);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    background: rgba(255, 255, 255, 0.65);
+                    backdrop-filter: blur(32px) saturate(180%);
+                    -webkit-backdrop-filter: blur(32px) saturate(180%);
+                    border: 1px solid rgba(255, 255, 255, 0.78);
+                    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.9);
                     border-radius: 4px;
                 }
-
             `}</style>
         </main>
     );

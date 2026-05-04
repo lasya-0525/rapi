@@ -44,8 +44,8 @@ export const AnimatedTestimonials = ({
     };
 
     return (
-        <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-            <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+        <div className="mx-auto max-w-sm px-4 py-4 font-sans antialiased md:max-w-5xl md:px-8 lg:px-12">
+            <div className="relative grid grid-cols-1 gap-12 md:grid-cols-2 glass-card p-8 md:p-12 rounded-2xl">
                 <div>
                     <div className="relative h-80 w-full">
                         <AnimatePresence>
@@ -113,13 +113,13 @@ export const AnimatedTestimonials = ({
                             ease: "easeInOut",
                         }}
                     >
-                        <h3 className="text-2xl font-bold text-black dark:text-white">
+                                        <h3 className="text-2xl font-bold text-[#0f172a]">
                             {testimonials[active].name}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-neutral-500">
+                        <p className="text-sm text-[#054FB8] font-medium">
                             {testimonials[active].designation}
                         </p>
-                        <motion.p className="mt-8 text-lg text-gray-500 dark:text-neutral-300">
+                        <motion.p className="mt-8 text-lg text-[#334155] leading-relaxed">
                             {testimonials[active].quote.split(" ").map((word, index) => (
                                 <motion.span
                                     key={index}
@@ -146,17 +146,17 @@ export const AnimatedTestimonials = ({
                         </motion.p>
                     </motion.div>
                     <div className="flex gap-4 pt-12 md:pt-0">
-                        <button
+                                        <button
                             onClick={handlePrev}
-                            className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+                            className="group/button flex h-9 w-9 items-center justify-center rounded-full bg-white border border-[#0f172a]/10 shadow-sm hover:bg-[#054FB8] hover:border-[#054FB8] transition-all duration-300"
                         >
-                            <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+                            <IconArrowLeft className="h-4 w-4 text-[#0f172a] group-hover/button:text-white transition-colors duration-300 group-hover/button:rotate-12" />
                         </button>
                         <button
                             onClick={handleNext}
-                            className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+                            className="group/button flex h-9 w-9 items-center justify-center rounded-full bg-[#054FB8] border border-[#054FB8] shadow-sm hover:bg-[#0f172a] hover:border-[#0f172a] transition-all duration-300"
                         >
-                            <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+                            <IconArrowRight className="h-4 w-4 text-white transition-colors duration-300 group-hover/button:-rotate-12" />
                         </button>
                     </div>
                 </div>

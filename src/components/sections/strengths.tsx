@@ -67,7 +67,7 @@ const Strengths = () => {
             >
               {/* Vertical Rotated Title */}
               <div className="absolute top-1/2 left-10 -translate-y-1/2 -rotate-90 origin-left">
-                <span className="text-[12px] font-medium uppercase tracking-[0.2em] text-white/40 block">
+                <span className="text-[12px] font-medium uppercase tracking-[0.2em] text-[#64748b] block">
                   {strength.title}
                 </span>
               </div>
@@ -81,7 +81,7 @@ const Strengths = () => {
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-contain mix-blend-screen opacity-90"
+                      className="w-full h-full object-contain opacity-90"
                     >
                       <source src={strength.video} type="video/mp4" />
                     </video>
@@ -90,7 +90,7 @@ const Strengths = () => {
 
                 {/* Content */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <h2 className="text-[10vw] lg:text-[6vw] font-normal leading-[0.9] tracking-tighter mb-8 lowercase">
+                  <h2 className="text-[10vw] lg:text-[6vw] font-extrabold leading-[0.9] tracking-tight mb-8 lowercase text-[#054FB8]">
                     {strength.title}
                   </h2>
                   <p className="text-[16px] lg:text-[18px] text-muted-foreground leading-relaxed max-w-md font-light">
@@ -101,14 +101,14 @@ const Strengths = () => {
 
               {/* Counter Indicator */}
               <div className="absolute bottom-10 right-10 flex items-center gap-4">
-                <span className="text-[10px] uppercase tracking-widest text-white">0{index + 1}</span>
-                <div className="w-12 h-[1px] bg-white/20 relative">
+                <span className="text-[10px] uppercase tracking-widest text-[#0f172a]">0{index + 1}</span>
+                <div className="w-12 h-[1px] bg-[#0f172a]/20 relative">
                   <div
-                    className="absolute top-0 left-0 h-full bg-white transition-all duration-300"
+                    className="absolute top-0 left-0 h-full bg-[#0f172a] transition-all duration-300"
                     style={{ width: `${((index + 1) / strengths.length) * 100}%` }}
                   />
                 </div>
-                <span className="text-[10px] uppercase tracking-widest text-white/30">0{strengths.length}</span>
+                <span className="text-[10px] uppercase tracking-widest text-[#64748b]">0{strengths.length}</span>
               </div>
             </section>
           ))}

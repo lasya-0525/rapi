@@ -19,11 +19,11 @@ export type ServiceCategory = {
 
 // Richer gradients — still dark-theme friendly but more colorful
 const PANEL_GRADIENTS = [
-  "from-violet-500/25 via-violet-600/15 to-black/60 border border-violet-400/20",
-  "from-amber-500/20 via-amber-600/10 to-black/50 border border-amber-400/25",
-  "from-emerald-500/25 via-emerald-600/15 to-black/60 border border-emerald-400/20",
-  "from-rose-500/20 via-rose-600/10 to-black/50 border border-rose-400/20",
-  "from-[#054FB8]/30 via-[#054FB8]/15 to-black/60 border border-[#054FB8]/30",
+  "from-violet-500/25 via-violet-600/15 to-white/60 border border-violet-400/20",
+  "from-amber-500/20 via-amber-600/10 to-white/50 border border-amber-400/25",
+  "from-emerald-500/25 via-emerald-600/15 to-white/60 border border-emerald-400/20",
+  "from-rose-500/20 via-rose-600/10 to-white/50 border border-rose-400/20",
+  "from-[#054FB8]/30 via-[#054FB8]/15 to-white/60 border border-[#054FB8]/30",
 ];
 
 /**
@@ -58,11 +58,11 @@ export function BouncyCardsFeatures({ category }: { category: ServiceCategory })
         viewport={{ once: true }}
         className="glass-card mb-12 p-8 md:p-10"
       >
-        <div className="text-white/40 mb-6">{categoryIcon}</div>
-        <h2 className="text-3xl font-normal mb-4 uppercase tracking-tight text-white">
+        <div className="text-[#475569] mb-6">{categoryIcon}</div>
+        <h2 className="text-3xl font-normal mb-4 uppercase tracking-tight text-[#0f172a]">
           {categoryName}
         </h2>
-        <p className="text-white/60 font-light leading-relaxed max-w-2xl">
+        <p className="text-[#64748b] font-light leading-relaxed max-w-2xl">
           {description}
         </p>
       </motion.div>
@@ -123,13 +123,13 @@ const BounceCard = ({
       >
         {/* Top: icon + title */}
         <div className="relative z-10 flex flex-col items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white/80 group-hover:text-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0f172a]/10 text-[#475569] group-hover:text-[#0f172a]">
             {item.icon}
           </div>
-          <h3 className="mx-auto text-center text-2xl font-semibold text-white md:text-3xl">
+          <h3 className="mx-auto text-center text-2xl font-semibold text-[#0f172a] md:text-3xl">
             {item.title}
           </h3>
-          <p className="line-clamp-2 max-w-md text-center text-sm font-light leading-snug text-white/50">
+          <p className="line-clamp-2 max-w-md text-center text-sm font-light leading-snug text-[#64748b]">
             {item.desc}
           </p>
         </div>

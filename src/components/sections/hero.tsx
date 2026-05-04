@@ -177,6 +177,29 @@ export default function HeroSection() {
     };
   }, []);
 
+  const floatingImages = [
+    {
+      src: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
+      alt: "Robotics Automation",
+      style: { top: "18%", left: "4%", width: "180px", height: "120px", rotate: "-4deg", animationDelay: "0s" },
+    },
+    {
+      src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      alt: "Data Analytics Dashboard",
+      style: { bottom: "22%", left: "6%", width: "150px", height: "110px", rotate: "3deg", animationDelay: "1.2s" },
+    },
+    {
+      src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      alt: "Big Data Visualization",
+      style: { top: "16%", right: "4%", width: "176px", height: "118px", rotate: "4deg", animationDelay: "0.6s" },
+    },
+    {
+      src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+      alt: "Team Collaboration",
+      style: { bottom: "24%", right: "5%", width: "155px", height: "105px", rotate: "-3deg", animationDelay: "1.8s" },
+    },
+  ];
+
   return (
     <section
       className="relative w-screen min-h-screen overflow-hidden flex items-center justify-center -mt-[120px] lg:-mt-[100px]"
@@ -188,9 +211,49 @@ export default function HeroSection() {
         className="absolute inset-0 z-0 pointer-events-none"
       />
 
+      {/* Floating image cards — desktop only */}
+      <div className="hidden lg:block absolute inset-0 z-[5] pointer-events-none">
+        {floatingImages.map((img, i) => (
+          <div
+            key={i}
+            className="absolute rounded-2xl overflow-hidden hero-float-card"
+            style={{
+              top: img.style.top,
+              bottom: img.style.bottom,
+              left: img.style.left,
+              right: img.style.right,
+              width: img.style.width,
+              height: img.style.height,
+              transform: `rotate(${img.style.rotate})`,
+              animationDelay: img.style.animationDelay,
+              background: "rgba(255,255,255,0.55)",
+              backdropFilter: "blur(20px) saturate(180%)",
+              border: "1px solid rgba(255,255,255,0.85)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9)",
+            }}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-cover opacity-85"
+            />
+          </div>
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes hero-float {
+          0%, 100% { transform: translateY(0px) rotate(var(--r, 0deg)); }
+          50% { transform: translateY(-10px) rotate(var(--r, 0deg)); }
+        }
+        .hero-float-card {
+          animation: hero-float 6s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* ============ HERO CONTENT ============ */}
       <div className="container relative z-10 w-full px-5 lg:px-10 h-full flex flex-col justify-center items-center text-center pb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-[#054FB8]/35 backdrop-blur-sm mb-7">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#054FB8]/10 border border-[#054FB8]/35 backdrop-blur-sm mb-7">
           <svg className="w-3 h-3 text-[#054FB8]" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
             <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 11-2 0 1 1 0 012 0zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.536 14.95a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM16.464 16.464a1 1 0 101.414-1.414l-.707-.707a1 1 0 10-1.414 1.414l.707.707z" />
           </svg>
@@ -199,16 +262,16 @@ export default function HeroSection() {
           </span>
         </div>
 
-        <h1 className="mt-1 text-[clamp(2.4rem,5.2vw,4.9rem)] leading-[1.0] font-light text-white">
-          <span className="block text-white/90">
+        <h1 className="mt-1 text-[clamp(2.4rem,5.2vw,4.9rem)] leading-[1.05] font-bold text-[#0f172a]">
+          <span className="block font-semibold text-[#0f172a]/80">
             Transforming Ideas into
           </span>
-          <span className="block bg-gradient-to-r from-[#F32913] via-[#054FB8] to-[#4A9FF5] bg-clip-text text-transparent">
+          <span className="block font-extrabold bg-gradient-to-r from-[#F32913] via-[#054FB8] to-[#4A9FF5] bg-clip-text text-transparent">
             Powerful Solutions
           </span>
         </h1>
 
-        <p className="mt-5 max-w-2xl text-base md:text-lg font-light text-white/40 tracking-wide leading-relaxed">
+        <p className="mt-5 max-w-2xl text-base md:text-lg font-light text-[#475569] tracking-wide leading-relaxed">
           A decade-old technology consulting & staffing company helping enterprises and SMEs design, build, and scale their software.
         </p>
 
@@ -234,28 +297,28 @@ export default function HeroSection() {
         <div className="mt-14 w-full max-w-3xl">
           <div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-10">
             <div className="text-center">
-              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-white/95 leading-none">
-                10<span className="text-[#F32913]/90">+</span>
+              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-[#0f172a] leading-none">
+                10<span className="text-[#F32913]">+</span>
               </div>
-              <div className="mt-2 text-sm md:text-base font-light text-white/40 tracking-wide">
+              <div className="mt-2 text-sm md:text-base font-light text-[#64748b] tracking-wide">
                 Years Experience
               </div>
             </div>
 
             <div className="text-center">
-              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-white/95 leading-none">
-                200<span className="text-[#054FB8]/90">+</span>
+              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-[#0f172a] leading-none">
+                200<span className="text-[#054FB8]">+</span>
               </div>
-              <div className="mt-2 text-sm md:text-base font-light text-white/40 tracking-wide">
+              <div className="mt-2 text-sm md:text-base font-light text-[#64748b] tracking-wide">
                 Clients Served
               </div>
             </div>
 
             <div className="text-center">
-              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-white/95 leading-none">
-                50<span className="text-[#F32913]/90">+</span>
+              <div className="text-[2.2rem] md:text-[2.4rem] font-semibold text-[#0f172a] leading-none">
+                50<span className="text-[#F32913]">+</span>
               </div>
-              <div className="mt-2 text-sm md:text-base font-light text-white/40 tracking-wide">
+              <div className="mt-2 text-sm md:text-base font-light text-[#64748b] tracking-wide">
                 Enterprise Partners
               </div>
             </div>

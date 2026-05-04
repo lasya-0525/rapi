@@ -180,8 +180,7 @@ const servicesData = [
 
 export default function ServicesPage() {
     return (
-        <main className="relative min-h-screen text-white selection:bg-white/20 overflow-x-hidden">
-
+        <main className="relative min-h-screen text-[#0f172a] selection:bg-[#054FB8]/20 overflow-x-hidden">
 
             <div className="relative z-10 container mx-auto px-5 lg:px-10 content-page pb-20">
                 {/* Page Header */}
@@ -190,15 +189,15 @@ export default function ServicesPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-[12vw] lg:text-[8vw] font-normal leading-[0.9] tracking-tighter mb-12"
+                        className="text-[12vw] lg:text-[8vw] font-extrabold leading-[0.9] tracking-tighter mb-12"
                     >
-                        Services
+                        <span className="text-[#054FB8]">Ser</span><span className="text-[#F32913]">vi</span><span className="text-[#0f172a]">ces</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-xl md:text-2xl font-light text-white/50 leading-relaxed"
+                        className="text-xl md:text-2xl font-light text-[#475569] leading-relaxed"
                     >
                         A high-performance hierarchy of technological capabilities designed to solve complex challenges through elite engineering.
                     </motion.p>
@@ -211,8 +210,8 @@ export default function ServicesPage() {
 
                 {/* Global Footer Teaser */}
                 <div className="mt-40 text-center pb-32">
-                    <p className="text-[12px] uppercase tracking-[0.4em] opacity-40 mb-8">Ready to innovate?</p>
-                    <a href="/about" className="text-4xl md:text-6xl font-light hover:opacity-50 transition-opacity">
+                    <p className="text-[12px] uppercase tracking-[0.4em] text-[#64748b] mb-8">Ready to innovate?</p>
+                    <a href="/about" className="text-4xl md:text-6xl font-extrabold text-[#0f172a] hover:text-[#054FB8] transition-colors">
                         Work with us
                     </a>
                 </div>
@@ -220,13 +219,13 @@ export default function ServicesPage() {
 
             <style jsx global>{`
         .glass-card {
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.65);
+          backdrop-filter: blur(32px) saturate(180%);
+          -webkit-backdrop-filter: blur(32px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.78);
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.9);
           border-radius: 4px;
         }
-
-
       `}</style>
         </main>
     );
