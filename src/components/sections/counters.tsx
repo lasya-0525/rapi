@@ -6,7 +6,7 @@ import { motion, useInView, useSpring, useTransform, animate } from "framer-moti
 /**
  * Animated Counter Component
  */
-const Counter = ({ value, suffix = "", title, delay = 0 }: { value: number; suffix?: string; title: string; delay?: number }) => {
+const Counter = ({ value, suffix = "", title, delay = 0, accent = "#054FB8" }: { value: number; suffix?: string; title: string; delay?: number; accent?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [displayValue, setDisplayValue] = React.useState(0);
@@ -24,15 +24,21 @@ const Counter = ({ value, suffix = "", title, delay = 0 }: { value: number; suff
   }, [isInView, value, delay]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center p-8 glass-card border border-[#0f172a]/10 hover:border-[#054FB8]/30 transition-all duration-500 group relative overflow-hidden">
+    <div
+      ref={ref}
+      className="flex flex-col items-center justify-center p-8 glass-card border transition-all duration-500 group relative overflow-hidden"
+      style={{ borderColor: "rgba(255,255,255,0.8)" }}
+    >
+      {/* Accent top bar */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-sm transition-opacity duration-500" style={{ background: accent }} />
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#054FB8]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ background: `radial-gradient(ellipse at top, ${accent}12 0%, transparent 70%)` }} />
 
       <div className="relative z-10 flex flex-col items-center">
-        <div className="text-4xl md:text-6xl font-extrabold text-[#054FB8] group-hover:text-[#F32913] mb-2 tracking-tight transition-colors duration-500">
+        <div className="text-4xl md:text-6xl font-extrabold mb-2 tracking-tight" style={{ color: accent }}>
           {displayValue}{suffix}
         </div>
-        <div className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-[#475569] font-semibold group-hover:text-[#0f172a] transition-colors">
+        <div className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-[#64748b] font-semibold group-hover:text-[#0f172a] transition-colors text-center">
           {title}
         </div>
       </div>
@@ -42,11 +48,11 @@ const Counter = ({ value, suffix = "", title, delay = 0 }: { value: number; suff
 
 export default function Counters() {
   const metrics = [
-    { title: "Projects Delivered", value: 500, suffix: "+" },
-    { title: "Global Clients", value: 50, suffix: "+" },
-    { title: "Expert Engineers", value: 200, suffix: "+" },
-    { title: "Years of Innovation", value: 10, suffix: "+" },
-    { title: "Client Satisfaction", value: 98, suffix: "%" },
+    { title: "Projects Delivered", value: 500, suffix: "+", accent: "#054FB8" },
+    { title: "Global Clients", value: 50, suffix: "+", accent: "#F32913" },
+    { title: "Expert Engineers", value: 200, suffix: "+", accent: "#054FB8" },
+    { title: "Years of Innovation", value: 10, suffix: "+", accent: "#F32913" },
+    { title: "Client Satisfaction", value: 98, suffix: "%", accent: "#054FB8" },
   ];
 
   return (
@@ -64,6 +70,7 @@ export default function Counters() {
               value={metric.value}
               suffix={metric.suffix}
               delay={index * 0.1}
+              accent={metric.accent}
             />
           ))}
         </div>

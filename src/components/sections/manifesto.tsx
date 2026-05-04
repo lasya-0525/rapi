@@ -60,29 +60,27 @@ const BackgroundLens = () => {
     offset: ["start end", "end start"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.6, 0.2]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.15]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.5, 0.15]);
 
   return (
     <div ref={ref} className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden">
       <motion.div
         style={{ scale, opacity }}
-        className="relative w-[90vw] h-[90vw] max-w-[1200px] max-h-[1200px] flex items-center justify-center"
+        className="relative w-[90vw] h-[90vw] max-w-[1100px] max-h-[1100px] flex items-center justify-center"
       >
-        {/* Glow */}
-        <div className="absolute inset-0 bg-radial from-[#5c5c42]/30 via-transparent to-transparent blur-[120px]" />
+        {/* Blue glow left */}
+        <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 rounded-full bg-[#054FB8]/20 blur-[80px]" />
+        {/* Red glow right */}
+        <div className="absolute bottom-1/4 right-1/4 w-2/5 h-2/5 rounded-full bg-[#F32913]/15 blur-[100px]" />
 
-        {/* Lens */}
-        <div className="relative w-full h-full rounded-full border border-white/5 shadow-[0_0_150px_rgba(92,92,66,0.2)] overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center mix-blend-screen opacity-20"
-            style={{
-              backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')`,
-              filter: 'contrast(120%)'
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#5c5c42]/10 via-[#1a1a1a]/40 to-black rounded-full" />
-        </div>
+        {/* Outer lens ring */}
+        <div className="relative w-full h-full rounded-full overflow-hidden"
+          style={{
+            border: "1px solid rgba(5,79,184,0.12)",
+            background: "radial-gradient(ellipse at 40% 40%, rgba(5,79,184,0.07) 0%, rgba(243,41,19,0.04) 50%, transparent 75%)",
+          }}
+        />
       </motion.div>
     </div>
   );

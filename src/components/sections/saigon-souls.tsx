@@ -9,29 +9,32 @@ const blogCards = [
     title: "The Benefits Of Robotics In Financial Services",
     author: "Tarun",
     date: "Feb 17, 2022",
-    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=1974&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1620714223084-8fcacc2107e6?q=80&w=1971&auto=format&fit=crop",
+    tag: "Automation",
   },
   {
     title: "10 Critical Questions To Ask Ahead Of AI Implementation",
     author: "Prem Kumar",
     date: "Feb 10, 2022",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1932&auto=format&fit=crop",
+    tag: "AI",
   },
   {
     title: "How Financial And Banking Services Can Benefit By Adopting Intelligent Process Automation",
     author: "Teja",
     date: "Feb 03, 2022",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=2070&auto=format&fit=crop",
+    tag: "FinTech",
   },
 ];
 
 const tileImages = [
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2068&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-  "/images/resources/abstract-innovation.png",
+  "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
 ];
 
 const TilesLine = ({ images, speed, direction }: { images: string[], speed: number, direction: 'left' | 'right' }) => {
@@ -90,20 +93,36 @@ export default function ResourcesSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
           {blogCards.map((blog, index) => (
             <div key={index} className="group cursor-pointer">
-              <div className="relative overflow-hidden aspect-[16/10] mb-6 bg-[#e2e8f0]">
+              <div className="relative overflow-hidden rounded-2xl aspect-[16/10] mb-6"
+                style={{
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
+                  border: "1px solid rgba(255,255,255,0.8)",
+                }}
+              >
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-full h-full object-cover grayscale-[20%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                  className="w-full h-full object-cover grayscale-[10%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
                 />
+                {/* Brand tag */}
+                <div className="absolute top-3 left-3">
+                  <span
+                    className="text-[9px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 rounded-full text-white"
+                    style={{ background: index === 1 ? "#054FB8" : "#F32913" }}
+                  >
+                    {blog.tag}
+                  </span>
+                </div>
+                {/* Hover gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="flex flex-col space-y-3">
                 <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-[#64748b]">
-                  <span>{blog.author}</span>
-                  <span className="w-4 h-[1px] bg-[#0f172a]/20"></span>
+                  <span className="font-semibold">{blog.author}</span>
+                  <span className="w-4 h-[1px] bg-[#0f172a]/20" />
                   <span>{blog.date}</span>
                 </div>
-                <h3 className="text-[18px] font-normal leading-snug text-[#0f172a] group-hover:opacity-70 transition-opacity">
+                <h3 className="text-[18px] font-semibold leading-snug text-[#0f172a] group-hover:text-[#054FB8] transition-colors duration-300">
                   {blog.title}
                 </h3>
               </div>
